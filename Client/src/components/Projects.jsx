@@ -1,51 +1,56 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { assets, projectsData } from '../assets/assets';
 
 const Projects = () => {
-
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [cardsToShoe, setCardsToShow] = useState(1);
+    const [cardsToShow, setCardsToShow] = useState(1);
+    const sliderRef = useRef(null);
 
     useEffect(() => {
-        const updatesCardsToShow = () => {
+        const updateCardsToShow = () => {
             if (window.innerWidth >= 1024) {
-                setCardsToShow(projectsData.length);
+                setCardsToShow(3); // Adjust based on how many cards you want to show at a time
             } else {
                 setCardsToShow(1);
-            };
-        }
-        updatesCardsToShow();
-        window.addEventListener('resize', updatesCardsToShow);
-        return () => window.removeEventListener('resize', updatesCardsToShow);
+            }
+        };
+        updateCardsToShow();
+        window.addEventListener('resize', updateCardsToShow);
+        return () => window.removeEventListener('resize', updateCardsToShow);
+    }, []);
 
-    }, [])
+    useEffect(() => {
+        if (sliderRef.current) {
+            sliderRef.current.style.transition = 'transform 0.5s ease-in-out';
+            sliderRef.current.style.transform = `translateX(-${currentIndex * (100 / cardsToShow)}%)`;
+        }
+    }, [currentIndex, cardsToShow]);
 
     const nextProject = () => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % projectsData.length)
-    }
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % projectsData.length);
+    };
 
     const prevProject = () => {
-        setCurrentIndex((prevIndex) => prevIndex === 0 ? projectsData.length - 1 : prevIndex - 1)
-    }
+        setCurrentIndex((prevIndex) => (prevIndex - 1 + projectsData.length) % projectsData.length);
+    };
 
     return (
         <div className='container mx-auto py-4 pt-20 px-6 md:px-20 lg:px-32 my-20 w-full overflow-hidden' id='Projects'>
-            <h1 className='text-2xl sm:text-4xl font-bold mb-2 text-center'>Projects <span className='font-light underline underline-offset-4 decoration-1 under'>Completed</span></h1>
-            <p className='text-center text-gray-500 mb-8 max-w-80 mx-auto'>crafting Spaces, Building legacies-Explore our Portfolio</p>
+            <h1 className='text-2xl sm:text-4xl font-bold mb-2 text-center'>Projects <span className='font-light underline underline-offset-4 decoration-1'>Completed</span></h1>
+            <p className='text-center text-gray-500 mb-8 max-w-80 mx-auto'>Crafting Spaces, Building Legacies - Explore our Portfolio</p>
 
-            {/*----slider images----*/}
             <div className='flex items-center justify-end mb-8'>
                 <button className='p-3 bg-gray-200 rounded mr-2 cursor-pointer' aria-label='Previous Project' onClick={prevProject}>
-                    <img src={assets.left_arrow} alt="previous" />
+                    <img src={assets.left_arrow} alt='Previous' />
                 </button>
                 <button className='p-3 bg-gray-200 rounded mr-2 cursor-pointer' aria-label='Next Project' onClick={nextProject}>
-                    <img src={assets.right_arrow} alt="Next" />
+                    <img src={assets.right_arrow} alt='Next' />
                 </button>
             </div>
-            {/*----slider container----*/}
+
             <div className='overflow-hidden'>
-                <div className='flex gap-8 transition-transform duration-500 ease-in-out' style={{ transform: `translateX(-${(currentIndex * 100) / cardsToShoe}%)` }}>
-                    {projectsData.map((project, index) => (
+                <div ref={sliderRef} className='flex gap-8 transition-transform duration-500 ease-in-out'>
+                    {[...projectsData, ...projectsData].map((project, index) => (
                         <div key={index} className='relative flex-shrink-0 w-full sm:w-1/4'>
                             <img src={project.image} alt={project.title} className='w-full h-auto mb-14' />
                             <div className='absolute left-0 right-0 bottom-5 flex justify-center'>
@@ -59,7 +64,7 @@ const Projects = () => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Projects
+export default Projects;
