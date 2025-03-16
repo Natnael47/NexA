@@ -14,7 +14,7 @@ const Header = () => {
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1.2, ease: "easeOut" }}
-                viewport={{ once: true, amount: 0.3 }}
+                viewport={{ once: true, amount: 0.2 }}
                 className="container text-center mx-auto py-4 px-6 md:px-20 lg:px-32 text-white"
             >
                 <motion.h2
