@@ -1,20 +1,15 @@
 import React from 'react'
-import About from './components/About'
-import Contact from './components/Contact'
-import Footer from './components/Footer'
-import Header from './components/Header'
-import Projects from './components/Projects'
-import Testimonials from './components/Testimonials '
+import { Route, Routes } from 'react-router-dom'
+import About from './pages/About'
+import Home from './pages/Home'
 
 const App = () => {
   return (
     <div className='w-full overflow-hidden'>
-      <Header />
-      <About />
-      <Projects />
-      <Testimonials />
-      <Contact />
-      <Footer />
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/about' element={<About />} />
+      </Routes>
     </div>
   )
 }
