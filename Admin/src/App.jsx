@@ -4,8 +4,10 @@ import { ToastContainer } from 'react-toastify';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import { AppContext } from './context/AppContext';
+import Add_Project from './pages/Add_Project';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
+import Projects from './pages/Projects';
 
 export const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
@@ -21,6 +23,8 @@ const App = () => {
         <Sidebar />
         <Routes>
           <Route path='/' element={<Dashboard />} />
+          <Route path='/new-project' element={<Add_Project />} />
+          <Route path='/projects' element={<Projects />} />
         </Routes>
       </div>
     </div>
