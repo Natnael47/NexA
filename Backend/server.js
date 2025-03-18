@@ -2,6 +2,7 @@ import cors from "cors";
 import "dotenv/config";
 import express from "express";
 import { connectDB } from "./config/mongodb.js";
+import ProjectRouter from "./routes/ProjectRoute.js";
 import userRouter from "./routes/userRoute.js";
 
 //app config
@@ -17,7 +18,9 @@ app.use(cors());
 app.get("/", (req, res) => {
   res.send("Api Start Working!");
 });
+app.use("/images", express.static("uploads"));
 app.use("/api/admin", userRouter);
+app.use("/api/project", ProjectRouter);
 
 app.listen(port, () => {
   console.log(`Server Started on http://localhost:${port}`);
