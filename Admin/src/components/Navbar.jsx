@@ -1,11 +1,13 @@
-import React, { useContext } from 'react';
+import axios from 'axios';
+import React, { useContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+import { backendUrl } from '../App';
 import { assets } from '../assets/assets';
 import { AppContext } from '../context/AppContext';
 
 const Navbar = () => {
-
     const { token, setToken, navigate } = useContext(AppContext);
+    const [profile, setProfile] = useState(null);
 
     const logout = async () => {
         navigate('/');
@@ -15,12 +17,48 @@ const Navbar = () => {
         toast.success('Logout successful');
     };
 
-    return (
-        <div className='flex items-center py-2  px-[4%] justify-between bg-white border-b-2'>
-            <img src={assets.nexa_logo} alt="" className='w-[max(8%,50px)]' />
-            <button onClick={logout} className='bg-[#FFD128] text-gray-800 px-5 py-2 sm:px-7 sm:py-2 rounded-full text-xs sm:text-sm cursor-pointer'>Logout</button>
-        </div>
-    )
-}
+    useEffect(() => {
+        if (token) {
+            getData();
+        }
+    }, [token]);
 
-export default Navbar
+    const getData = async () => {
+        try {
+            const { data } = await axios.get(
+                `${backendUrl}/api/admin/data`,
+                { headers: { token } }
+            );
+            if (data.success) {
+                setProfile(data.data); // Assuming the admin data is in data.data
+            } else {
+                toast.error(data.message);
+            }
+        } catch (error) {
+            toast.error(error.message);
+        }
+    };
+
+    return (
+        <div className='flex items-center py-2 px-[4%] justify-between bg-white border-b-2'>
+            {/* Logo */}
+            <img src={assets.nexa_logo} alt="Nexa Logo" className='w-[max(8%,50px)]' />
+
+            {/* Greeting and Logout Button */}
+            <div className='flex items-center space-x-4 mr-5'>
+                {profile && (
+                    <span className='text-lg font-medium'>
+                        Hello, {profile.name || 'Admin'}
+                    </span>
+                )}
+                <button
+                    onClick={logout}
+                    className='bg-[#FFD128] text-gray-800 px-5 py-2 sm:px-7 sm:py-2 rounded-full text-xs sm:text-sm cursor-pointer'>
+                    Logout
+                </button>
+            </div>
+        </div>
+    );
+};
+
+export default Navbar;
