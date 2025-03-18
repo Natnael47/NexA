@@ -12,6 +12,7 @@ const Add_Project = () => {
         category: "",
         status: "Ongoing",
         images: [], // Store image files
+        imagePreviews: Array(4).fill(null), // Store preview URLs
     });
 
     // Handle text input change
@@ -21,9 +22,16 @@ const Add_Project = () => {
 
     // Handle image selection
     const handleImageChange = (e, index) => {
-        const files = [...formData.images]; // Copy existing images array
-        files[index] = e.target.files[0]; // Store selected file at the correct index
-        setFormData({ ...formData, images: files });
+        const file = e.target.files[0];
+        if (file) {
+            const newImages = [...formData.images];
+            const newPreviews = [...formData.imagePreviews];
+
+            newImages[index] = file; // Store file
+            newPreviews[index] = URL.createObjectURL(file); // Create preview URL
+
+            setFormData({ ...formData, images: newImages, imagePreviews: newPreviews });
+        }
     };
 
     // Handle form submission
@@ -39,7 +47,7 @@ const Add_Project = () => {
         data.append("status", formData.status);
 
         // Append images
-        formData.images.forEach((image, index) => {
+        formData.images.forEach((image) => {
             if (image) {
                 data.append(`images`, image); // Send as an array
             }
@@ -47,12 +55,10 @@ const Add_Project = () => {
 
         try {
             const response = await axios.post(`${backendUrl}/api/project/add`, data);
-
-            //const result = await response.json();
             if (response.data.success) {
                 alert("Project added successfully!");
             } else {
-                alert("Error adding project: " + response.message);
+                alert("Error adding project: " + response.data.message);
             }
         } catch (error) {
             console.error("Error submitting form:", error);
@@ -66,9 +72,18 @@ const Add_Project = () => {
                 <p className="mb-2 font-semibold">Upload Images</p>
                 <div className="flex gap-2">
                     {[0, 1, 2, 3].map((index) => (
-                        <label key={index} htmlFor={`image${index}`}>
-                            <img className="w-40" src={assets.upload_area} alt="Upload" />
-                            <input type="file" id={`image${index}`} hidden onChange={(e) => handleImageChange(e, index)} />
+                        <label key={index} htmlFor={`image${index}`} className="cursor-pointer">
+                            <img
+                                className="w-[150px] h-[100px] object-cover rounded-md border"
+                                src={formData.imagePreviews[index] || assets.upload_area}
+                                alt="Upload Preview"
+                            />
+                            <input
+                                type="file"
+                                id={`image${index}`}
+                                hidden
+                                onChange={(e) => handleImageChange(e, index)}
+                            />
                         </label>
                     ))}
                 </div>
