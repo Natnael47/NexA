@@ -80,4 +80,28 @@ const Create_Admin = async () => {
   }
 };
 
-export { Admin_Login, Create_Admin };
+// Route to get the admin data
+const Get_Admin_Data = async (req, res) => {
+  try {
+    // Find the admin in the database (assuming only one admin exists)
+    const admin = await AdminModel.findOne();
+
+    if (!admin) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Admin not found" });
+    }
+
+    // Remove the password from the response for security reasons
+    admin.password = undefined;
+
+    return res.json({ success: true, data: admin });
+  } catch (error) {
+    console.error("Error fetching admin data:", error);
+    return res
+      .status(500)
+      .json({ success: false, message: "Internal server error" });
+  }
+};
+
+export { Admin_Login, Create_Admin, Get_Admin_Data };
