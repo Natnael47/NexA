@@ -17,7 +17,7 @@ app.use(cors());
 app.get("/", (req, res) => {
   res.send("Api Start Working!");
 });
-app.use("/api/user", userRouter);
+app.use("/api/admin", userRouter);
 
 app.listen(port, () => {
   console.log(`Server Started on http://localhost:${port}`);
