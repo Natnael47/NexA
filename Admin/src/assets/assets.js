@@ -5,6 +5,7 @@ import left_arrow from "./left_arrow.svg";
 import logo from "./logo.svg";
 import logo_dark from "./logo_dark.svg";
 import menu_icon from "./menu_icon.svg";
+import nexa_logo from "./Nexa_logo.png";
 import profile_img_1 from "./profile_img_1.png";
 import profile_img_2 from "./profile_img_2.png";
 import profile_img_3 from "./profile_img_3.png";
@@ -19,6 +20,7 @@ import star_icon from "./star_icon.svg";
 import upload_area from "./upload_area.png";
 
 export const assets = {
+  nexa_logo,
   logo,
   logo_dark,
   upload_area,

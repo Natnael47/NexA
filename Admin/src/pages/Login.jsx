@@ -1,6 +1,8 @@
+import axios from 'axios';
 import { Eye, EyeOff } from 'lucide-react';
 import React, { useContext, useState } from 'react';
 import { toast } from "react-toastify";
+import { backendUrl } from '../App';
 import { AppContext } from '../context/AppContext';
 
 const Login = () => {
@@ -15,8 +17,13 @@ const Login = () => {
     const onSubmitHandler = async (event) => {
         event.preventDefault();
         try {
-            localStorage.setItem('token', 12345);
-            setToken(12345);
+            const response = await axios.post(backendUrl + '/api/admin/login', { email, password });
+            if (response.data.success) {
+                localStorage.setItem('token', response.data.token);
+                setToken(response.data.token);
+            } else {
+                toast.error(response.data.message);
+            }
         } catch (error) {
             console.log(error);
             toast.error(error.message);
