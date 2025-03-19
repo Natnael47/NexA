@@ -4,3 +4,20 @@
 * {
   font-family: Outfit;
 }
+
+::-webkit-scrollbar {
+  @apply hidden;
+}
+
+select,
+input,
+textarea {
+  border: 1px solid black;
+  outline-color: #bbefc0;
+  border-radius: 4px;
+}
+
+.active {
+  background-color: #ddf7df;
+  border-color: black;
+}
