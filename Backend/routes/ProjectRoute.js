@@ -1,21 +1,28 @@
 import express from "express";
-import { Add_Project } from "../controller/ProjectControl.js";
-
-const ProjectRouter = express.Router();
-
 import multer from "multer";
+import {
+  Add_Project,
+  deleteProjectById,
+  getAllProjects,
+  updateProjectById,
+} from "../controller/ProjectControl.js";
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "uploads/"); // Set upload folder
+    cb(null, "uploads/");
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + "-" + file.originalname); // Ensure unique filenames
+    cb(null, Date.now() + "-" + file.originalname);
   },
 });
 
 const upload = multer({ storage });
 
-ProjectRouter.post("/add", upload.array("images", 4), Add_Project);
+const ProjectRouter = express.Router();
+
+ProjectRouter.post("/add", upload.array("images", 20), Add_Project);
+ProjectRouter.get("/list", getAllProjects);
+ProjectRouter.put("/update/:id", upload.array("images", 20), updateProjectById);
+ProjectRouter.delete("/delete/:id", deleteProjectById);
 
 export default ProjectRouter;
