@@ -96,7 +96,7 @@ const Projects = () => {
 
                                 {/* Actions */}
                                 <div className="flex justify-center space-x-4">
-                                    <button className="text-blue-500 hover:text-blue-700" onClick={() => navigate(`/projects/${project._id}`)}>View</button>
+                                    <button className="text-blue-500 hover:text-blue-700" onClick={() => navigate(`/view/${project._id}`)}>View</button>
                                     <button className="text-red-500 hover:text-red-700" onClick={() => openModal(project._id)}>Delete</button>
                                 </div>
                             </div>

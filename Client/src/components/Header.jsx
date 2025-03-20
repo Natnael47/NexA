@@ -6,7 +6,7 @@ const Header = () => {
     return (
         <div
             className="min-h-screen mb-4 bg-cover bg-center flex items-center w-full overflow-hidden"
-            style={{ backgroundImage: "url('/header_img.png')" }}
+            style={{ backgroundImage: "url('/4+1-gece.jpg')" }}
             id="Header"
         >
             <Navbar />
@@ -21,7 +21,7 @@ const Header = () => {
                     initial={{ scale: 0.9, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ duration: 1, delay: 0.3 }}
-                    className="text-5xl sm:text-6xl md:text-[82px] inline-block max-w-3xl font-semibold pt-20"
+                    className="text-5xl text-gray-300 sm:text-6xl md:text-[82px] inline-block max-w-3xl font-semibold pt-20"
                 >
                     Explore homes that fit your dreams
                 </motion.h2>

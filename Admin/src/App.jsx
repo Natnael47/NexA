@@ -8,6 +8,7 @@ import Add_Project from './pages/Add_Project';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import Projects from './pages/Projects';
+import View from './pages/View';
 
 export const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
@@ -26,6 +27,7 @@ const App = () => {
           <Route path='/new-project' element={<Add_Project />} />
           <Route path='/projects' element={<Projects />} />
           <Route path='/add' element={<Add_Project />} />
+          <Route path='/view/:projectId' element={<View />} />
         </Routes>
       </div>
     </div>
