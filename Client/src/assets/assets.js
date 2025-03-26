@@ -2,13 +2,13 @@ import brand_img from "./brand_img.png";
 import cross_icon from "./cross_icon.svg";
 import header_img from "./header_img.png";
 import left_arrow from "./left_arrow.svg";
+import nexa_logo from "./Logo-1.png";
 import logo from "./logo.svg";
 import logo_dark from "./logo_dark.svg";
 import menu_icon from "./menu_icon.svg";
-import nexa_logo from "./Nexa_logo.png";
-import profile_img_1 from "./profile_img_1.png";
-import profile_img_2 from "./profile_img_2.png";
-import profile_img_3 from "./profile_img_3.png";
+import profile_img_3 from "./photo_Abdu.jpg";
+import profile_img_2 from "./photo_Mensur.jpg";
+import profile_img_1 from "./photo_Turkyu.jpg";
 import project_img_1 from "./project_img_1.jpg";
 import project_img_2 from "./project_img_2.jpg";
 import project_img_3 from "./project_img_3.jpg";
@@ -76,24 +76,24 @@ export const projectsData = [
 
 export const testimonialsData = [
   {
-    name: "Donald Jackman",
-    title: "Marketing Manager",
+    name: "Oguzhan",
+    title: "Civil Engineer",
     image: profile_img_1,
     alt: "Portrait of Donald Jackman",
     rating: 5,
     text: "From the very first meeting, they understood my vision and helped me find the perfect property. Their attention to detail and commitment to client satisfaction is unmatched.",
   },
   {
-    name: "Richard Nelson",
-    title: "UI/UX Designer",
+    name: "Mensur Jemal",
+    title: "General Manager",
     image: profile_img_2,
     alt: "Portrait of Richard Nelson",
     rating: 4,
     text: "From the very first meeting, they understood my vision and helped me find the perfect property. Their attention to detail and commitment to client satisfaction is unmatched.",
   },
   {
-    name: "James Washington",
-    title: "Co-Founder",
+    name: "Abdurahman",
+    title: "Vice Manager",
     image: profile_img_3,
     alt: "Portrait of James Washington",
     rating: 5,

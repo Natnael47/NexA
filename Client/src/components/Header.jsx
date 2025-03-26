@@ -21,7 +21,7 @@ const Header = () => {
                     initial={{ scale: 0.9, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ duration: 1, delay: 0.3 }}
-                    className="text-5xl text-gray-300 sm:text-6xl md:text-[82px] inline-block max-w-3xl font-semibold pt-20"
+                    className="text-5xl sm:text-6xl md:text-[82px] inline-block max-w-3xl font-semibold pt-20 text-white drop-shadow-[2px_2px_5px_rgba(0,0,0,0.8)]"
                 >
                     Explore homes that fit your dreams
                 </motion.h2>
@@ -31,11 +31,17 @@ const Header = () => {
                     transition={{ duration: 1, delay: 0.5 }}
                     className="space-x-6 mt-16"
                 >
-                    <a href="#Projects" className="border border-white py-3 rounded px-8 transition hover:bg-white hover:text-black">
+                    <a
+                        href="#Projects"
+                        className="bg-white text-black font-medium py-3 rounded px-8 transition hover:bg-gray-200 shadow-lg"
+                    >
                         Projects
                     </a>
-                    <a href="#Contact" className="bg-blue-500 py-3 rounded px-8 transition hover:bg-blue-600 scale-105">
-                        Contact us
+                    <a
+                        href="#Contact"
+                        className="bg-blue-500 text-white font-medium py-3 rounded px-8 transition hover:bg-blue-600 shadow-lg"
+                    >
+                        Contact Us
                     </a>
                 </motion.div>
             </motion.div>

@@ -69,10 +69,7 @@ const About = () => {
                         transition={{ duration: 1, delay: 0.4 }}
                         viewport={{ once: true }}
                     >
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam ab
-                        laudantium natus, voluptates eum doloremque expedita praesentium
-                        delectus temporibus hic cupiditate commodi molestiae modi inventore
-                        dignissimos fuga quae at sed?
+                        Nexa Consultancy Engineering Solutions is a dynamic Ethio-Turkish company committed to delivering top-tier engineering services. With expertise spanning elevators, finishing, interior design, and a wide range of engineering solutions, we bring innovative, high-quality, and cost-effective services to our clients. Our team of skilled professionals ensures precision, efficiency, and compliance with international standards, making us a trusted partner in the industry.
                     </motion.p>
 
                     <motion.button
