@@ -1,9 +1,73 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react';
+import { assets, projectsData } from '../assets/assets';
+import Navbar2 from '../components/Navbar2';
 
 const Construction = () => {
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [cardsToShow, setCardsToShow] = useState(1);
+    const sliderRef = useRef(null);
+
+    useEffect(() => {
+        const updateCardsToShow = () => {
+            if (window.innerWidth >= 1024) {
+                setCardsToShow(3); // Adjust based on how many cards you want to show at a time
+            } else {
+                setCardsToShow(1);
+            }
+        };
+        updateCardsToShow();
+        window.addEventListener('resize', updateCardsToShow);
+        return () => window.removeEventListener('resize', updateCardsToShow);
+    }, []);
+
+    useEffect(() => {
+        if (sliderRef.current) {
+            sliderRef.current.style.transition = 'transform 0.5s ease-in-out';
+            sliderRef.current.style.transform = `translateX(-${currentIndex * (100 / cardsToShow)}%)`;
+        }
+    }, [currentIndex, cardsToShow]);
+
+    const nextProject = () => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % projectsData.length);
+    };
+
+    const prevProject = () => {
+        setCurrentIndex((prevIndex) => (prevIndex - 1 + projectsData.length) % projectsData.length);
+    };
+
     return (
-        <div>Construction</div>
-    )
+
+        <div className='container mx-auto py-4 pt-20 px-6 md:px-20 lg:px-32 my-20 w-full overflow-hidden' id='Projects'>
+            <Navbar2 />
+            <h1 className='text-2xl sm:text-4xl font-bold mb-2 text-center'>Projects <span className='font-light underline underline-offset-4 decoration-1'>Completed</span></h1>
+            <p className='text-center text-gray-500 mb-8 max-w-80 mx-auto'>Crafting Spaces, Building Legacies - Explore our Portfolio</p>
+
+            <div className='flex items-center justify-end mb-8'>
+                <button className='p-3 bg-gray-200 rounded mr-2 cursor-pointer' aria-label='Previous Project' onClick={prevProject}>
+                    <img src={assets.left_arrow} alt='Previous' />
+                </button>
+                <button className='p-3 bg-gray-200 rounded mr-2 cursor-pointer' aria-label='Next Project' onClick={nextProject}>
+                    <img src={assets.right_arrow} alt='Next' />
+                </button>
+            </div>
+
+            <div className='overflow-hidden'>
+                <div ref={sliderRef} className='flex gap-8 transition-transform duration-500 ease-in-out'>
+                    {[...projectsData, ...projectsData].map((project, index) => (
+                        <div key={index} className='relative flex-shrink-0 w-full sm:w-1/4'>
+                            <img src={project.image} alt={project.title} className='w-full h-auto mb-14' />
+                            <div className='absolute left-0 right-0 bottom-5 flex justify-center'>
+                                <div className='inline-block bg-white w-3/4 px-4 py-2 shadow-md'>
+                                    <h2 className='text-xl font-semibold text-gray-800'>{project.title}</h2>
+                                    <p>{project.price} <span className='px-1'>|</span> {project.location}</p>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
 }
 
 export default Construction
