@@ -1,4 +1,5 @@
 import brand_img from "./brand_img.png";
+import constructionImg from "./construction.jpg";
 import cross_icon from "./cross_icon.svg";
 import header_img from "./header_img.png";
 import left_arrow from "./left_arrow.svg";
@@ -20,6 +21,7 @@ import star_icon from "./star_icon.svg";
 
 export const assets = {
   nexa_logo,
+  constructionImg,
   logo,
   logo_dark,
   cross_icon,
@@ -99,4 +101,22 @@ export const testimonialsData = [
     rating: 5,
     text: "From the very first meeting, they understood my vision and helped me find the perfect property. Their attention to detail and commitment to client satisfaction is unmatched.",
   },
+];
+
+export const services = [
+  {
+    name: "Construction",
+    path: "/construction",
+    image: constructionImg,
+    alt: "Portrait of construction",
+  },
+  {
+    name: "Elevators",
+    path: "/elevators",
+    image: profile_img_3,
+  },
+  { name: "Tunnels", path: "/tunnels", image: project_img_2 },
+  { name: "HVAC", path: "/hvac", image: project_img_3 },
+  { name: "Software", path: "/software", image: project_img_4 },
+  { name: "Tourism", path: "/tourism", image: project_img_5 },
 ];

@@ -42,7 +42,7 @@ const About = () => {
                 >
                     <div className="grid grid-cols-2 gap-6 md:gap-10 w-full 2xl:pr-28">
                         {[
-                            { value: "10+", text: "Years of Excellence" },
+                            { value: "22+", text: "Years of Excellence" },
                             { value: "12+", text: "Projects Completed" },
                             { value: "20+", text: "Mn. Sq. Ft. Delivered" },
                             { value: "25+", text: "Ongoing Projects" },
