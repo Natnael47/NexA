@@ -13,7 +13,7 @@ const App = () => {
   return (
     <>
       {!isHomePage && <Navbar2 />}
-      <div className={isHomePage ? 'w-full overflow-hidden' : 'w-4/5 mx-auto mt-28'}>
+      <div className={'w-full overflow-hidden'}>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/about' element={<About />} />
