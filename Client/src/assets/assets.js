@@ -1,6 +1,7 @@
 import brand_img from "./brand_img.png";
 import constructionImg from "./construction.jpg";
 import cross_icon from "./cross_icon.svg";
+import googleMap from "./googlemap.png";
 import header_img from "./header_img.png";
 import left_arrow from "./left_arrow.svg";
 import nexa_logo from "./Logo-1.png";
@@ -21,6 +22,7 @@ import star_icon from "./star_icon.svg";
 
 export const assets = {
   nexa_logo,
+  googleMap,
   constructionImg,
   logo,
   logo_dark,

@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
-import React from "react";
+import React, { useContext } from "react";
 import { assets } from "../assets/assets";
+import { AppContext } from "../context/AppContext";
 
 const About = () => {
+    const { navigate } = useContext(AppContext);
     return (
         <motion.div
             initial={{ opacity: 0, x: 200 }}
@@ -12,12 +14,7 @@ const About = () => {
             className="flex flex-col items-center justify-between container mx-auto p-14 md:px-20 lg:px-32 w-full overflow-hidden"
             id="About"
         >
-            <h1 className="text-2xl sm:text-4xl font-black mb-2">
-                About{" "}
-                <span className="underline underline-offset-4 decoration-1 under font-light">
-                    Our Brand
-                </span>
-            </h1>
+            <h1 className='text-2xl sm:text-4xl font-bold mb-2 text-center'>About <span className='font-light underline underline-offset-4 decoration-1'>Our Brand</span></h1>
             <p className="text-gray-500 max-w-80 text-center mb-8">
                 Passionate About Properties, Dedicated to Your Vision
             </p>
@@ -76,6 +73,7 @@ const About = () => {
                         className="bg-blue-600 text-white px-8 py-2 rounded"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
+                        onClick={() => navigate('/about')}
                     >
                         Learn More
                     </motion.button>

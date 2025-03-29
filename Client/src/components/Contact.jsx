@@ -1,4 +1,6 @@
+import { Mail, MapPin, Phone } from 'lucide-react'
 import React from 'react'
+import { assets } from '../assets/assets'
 
 const Contact = () => {
     return (
@@ -20,8 +22,47 @@ const Contact = () => {
                     Your Message
                     <textarea className='w-full border border-gray-300 rounded py-3 px-4 mt-2 h-48 resize-none' name='Message' rows='4' placeholder='Your Message' required />
                 </div>
-                <button className='bg-blue-600 text-white py-2 px-12 mb-10 rounded'>Send Message</button>
+                <button className='bg-blue-600 text-white py-2 px-12 mb-10 rounded hover:bg-blue-800 cursor-pointer'>Send Message</button>
             </form>
+
+            <div className="flex flex-col md:flex-row items-center justify-between gap-8 max-w-4xl mx-auto mt-8 bg-white shadow-2xl rounded-2xl p-8">
+                {/* Left Side - Contact Details with Descriptions */}
+                <div className="space-y-6 text-gray-800">
+                    <div>
+                        <p className="flex items-center gap-3 text-lg font-semibold">
+                            <MapPin className="text-blue-600 w-6 h-6" /> Merkeb Plaza, Olompia
+                        </p>
+                        <p className="text-gray-600 text-sm">Our office is located in the heart of Olompia for easy accessibility.</p>
+                    </div>
+
+                    <div>
+                        <p className="flex items-center gap-3 text-lg font-semibold">
+                            <Phone className="text-blue-600 w-6 h-6" /> 0216 331 11 80
+                        </p>
+                        <p className="text-gray-600 text-sm">Feel free to call us during business hours for any inquiries.</p>
+                    </div>
+
+                    <div>
+                        <p className="flex items-center gap-3 text-lg font-semibold">
+                            <Mail className="text-blue-600 w-6 h-6" /> info@NexaEngsolutions.com.et
+                        </p>
+                        <p className="text-gray-600 text-sm">Send us an email, and our team will get back to you promptly.</p>
+                    </div>
+                </div>
+
+                {/* Right Side - Google Map Image with Description */}
+                <div className="cursor-pointer text-center">
+                    <a href="https://maps.app.goo.gl/T4SnJS8caZfFTQfB8" target="_blank" rel="noopener noreferrer">
+                        <img
+                            src={assets.googleMap}
+                            alt="Google Map"
+                            className="w-96 h-64 object-cover rounded-xl shadow-lg hover:opacity-90 transition-opacity border-2 border-black duration-300"
+                        />
+                    </a>
+                    <p className="text-gray-600 text-sm mt-2">Click the map to get directions to our office.</p>
+                </div>
+            </div>
+
         </div>
     )
 }

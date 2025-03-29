@@ -4,3 +4,9 @@
 * {
   font-family: Outfit;
 }
+
+.app {
+  width: 80%;
+  margin: auto;
+  margin-top: 120px;
+}
