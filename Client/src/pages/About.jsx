@@ -8,16 +8,30 @@ const About = () => {
             <div className='text-center text-2xl pt-2 text-black'>
                 <h1 className='text-2xl sm:text-4xl font-bold mb-2 text-center'>About <span className='font-light underline underline-offset-4 decoration-1'>NexA</span></h1>
             </div>
-            <div className='my-10 flex  flex-col md:flex-row gap-12'>
-                <img className='w-full md:max-w-[360px]' src={assets.brand_img} alt="" />
-                <div className='flex flex-col justify-center gap-6 md:w-2/4 text-lg text-gray-800'>
-                    <p>At NexA, we take pride in combining cutting-edge technology with creative engineering to enhance both functionality and aesthetics. Our commitment to precision, efficiency, and compliance with international standards makes us a trusted partner for businesses and individuals seeking reliable, high-quality engineering solutions.</p>
-                    <p>At Nexa, we believe in combining cutting-edge technology with creative engineering to enhance functionality and aesthetics. Whether it’s installing state-of-the-art elevators, refining interior spaces, or providing specialized engineering solutions, we are dedicated to excellence in every project.</p>
-                    <b className='text-gray-900'>Our Expertise</b>
-                    <p>Elevators & Vertical Transportation Systems
-                        We provide advanced elevator solutions, from design and installation to maintenance and modernization, ensuring safety, efficiency, and seamless vertical mobility.</p>
+            <div className='my-10 flex flex-col md:flex-row gap-8 md:gap-12 max-w-7xl mx-auto px-4 lg:px-8'>
+                {/* Image Section */}
+                <img
+                    className='w-full md:w-1/2 lg:w-5/12 object-cover rounded-xl'
+                    src={assets.brand_img}
+                    alt="Brand"
+                />
+
+                {/* Text Section */}
+                <div className='flex flex-col justify-center gap-6 text-gray-800 md:w-1/2 lg:w-7/12 text-lg'>
+                    <p>
+                        At NexA, we take pride in combining cutting-edge technology with creative engineering to enhance both functionality and aesthetics. Our commitment to precision, efficiency, and compliance with international standards makes us a trusted partner for businesses and individuals seeking reliable, high-quality engineering solutions.
+                    </p>
+                    <p>
+                        At NexA, we believe in combining cutting-edge technology with creative engineering to enhance functionality and aesthetics. Whether it’s installing state-of-the-art elevators, refining interior spaces, or providing specialized engineering solutions, we are dedicated to excellence in every project.
+                    </p>
+                    <b className='text-gray-900 text-xl'>Our Expertise</b>
+                    <p>
+                        <span className='font-semibold'>Elevators & Vertical Transportation Systems:</span>
+                        We provide advanced elevator solutions, from design and installation to maintenance and modernization, ensuring safety, efficiency, and seamless vertical mobility.
+                    </p>
                 </div>
             </div>
+
 
             <div>
                 <h1 className='text-2xl sm:text-4xl font-bold mb-2 text-start'>Why <span className='font-light underline underline-offset-4 decoration-1'>Choose Us</span></h1>
