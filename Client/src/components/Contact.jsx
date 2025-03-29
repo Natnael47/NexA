@@ -1,6 +1,5 @@
 import { Mail, MapPin, Phone } from 'lucide-react'
 import React from 'react'
-import { assets } from '../assets/assets'
 
 const Contact = () => {
     return (
@@ -8,7 +7,7 @@ const Contact = () => {
             <h1 className='text-2xl sm:text-4xl font-bold mb-2 text-center'>Contact <span className='font-light underline underline-offset-4 decoration-1'>With Us </span></h1>
             <p className='text-center text-gray-500 mb-12 max-w-80 mx-auto'>Ready to make a move? Let's Build your Future Together</p>
 
-            <form className='max-w-2xl mx-auto text-gray-600 pt-8'>
+            <form className='max-w-2xl mx-auto text-gray-600 pt-5'>
                 <div className='flex flex-wrap'>
                     <div className='w-full md:w-1/2 text-left'>Your Name
                         <input className='w-full border border-gray-300 rounded py-3 px-4 mt-2' name='Name' type="text" placeholder='Your Name' required />
@@ -50,17 +49,22 @@ const Contact = () => {
                     </div>
                 </div>
 
-                {/* Right Side - Google Map Image with Description */}
-                <div className="cursor-pointer text-center">
-                    <a href="https://maps.app.goo.gl/T4SnJS8caZfFTQfB8" target="_blank" rel="noopener noreferrer">
-                        <img
-                            src={assets.googleMap}
-                            alt="Google Map"
-                            className="w-96 h-64 object-cover rounded-xl shadow-lg hover:opacity-90 transition-opacity border-2 border-black duration-300"
-                        />
-                    </a>
-                    <p className="text-gray-600 text-sm mt-2">Click the map to get directions to our office.</p>
+                {/* Right Side - Embedded Google Map */}
+                <div className="w-full md:w-[400px] h-[300px] rounded-xl overflow-hidden shadow-lg border-2 border-gray-300">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1970.3400603197986!2d38.76682540993323!3d9.001552685988335!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b85bf78ae5f39%3A0x5876d9eab73e5228!2zTWVya2ViIFBsYXphIHwgT2xvbXBpYSB8IOGImOGIreGKqOGJpSDhjZXhiIvhi5sgfCDhiqbhiI7hiJ3hjZLhi6s!5e0!3m2!1sen!2set!4v1743275783641!5m2!1sen!2set"
+                        width="100%"
+                        height="100%"
+                        style={{ border: 0 }}
+                        allowFullScreen
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                    ></iframe>
+                    <p className="text-gray-600 text-sm mt-2 text-center">
+                        Use the interactive map to find our office location.
+                    </p>
                 </div>
+
             </div>
 
         </div>

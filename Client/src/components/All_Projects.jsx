@@ -13,10 +13,10 @@ const All_Projects = () => {
     const { navigate } = useContext(AppContext);
 
     return (
-        <div className="container mx-auto py-20 px-6 md:px-20 text-center">
+        <div className="container mx-auto py-20 px-6 md:px-20 text-center" id='Services'>
 
             <h1 className='text-2xl sm:text-4xl font-bold mb-2 text-center'>Our <span className='font-light underline underline-offset-4 decoration-1'>Services</span></h1>
-            <p className='text-center text-gray-500 mb-12 max-w-80 mx-auto'>Explore our diverse range of expertise.</p>
+            <p className='text-center text-gray-500 mb-10 max-w-80 mx-auto'>Explore our diverse range of expertise.</p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {/* Service Items */}
