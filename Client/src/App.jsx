@@ -9,6 +9,8 @@ import Elevators from './pages/Elevators';
 import Home from './pages/Home';
 import Product from './pages/Product';
 
+export const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 const App = () => {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
