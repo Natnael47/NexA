@@ -7,6 +7,7 @@ import Construction from './pages/Construction';
 import Contact from './pages/Contact';
 import Elevators from './pages/Elevators';
 import Home from './pages/Home';
+import Product from './pages/Product';
 
 const App = () => {
   const location = useLocation();
@@ -22,6 +23,7 @@ const App = () => {
           <Route path='/construction' element={<Construction />} />
           <Route path='/contact-us' element={<Contact />} />
           <Route path='/elevators' element={<Elevators />} />
+          <Route path='/product/:productId' element={<Product />} />
         </Routes>
       </div>
       <Footer />
