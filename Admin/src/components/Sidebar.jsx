@@ -22,6 +22,10 @@ const Sidebar = () => {
                     <SquarePlus size={28} />
                     <p className='hidden md:block'>New Elevators</p>
                 </NavLink>
+                <NavLink className={({ isActive }) => `flex items-center gap-3 py-3.5 px-3 md:px-9 md:min-w-62 cursor-pointer ${isActive ? 'bg-[#fcf9c6] border-r-5 border-[#FFC628]' : ''}`} to={'/elevator-list'}>
+                    <BriefcaseBusiness size={28} />
+                    <p className='hidden md:block'>Elevators</p>
+                </NavLink>
             </div>
         </div>
     )

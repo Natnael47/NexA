@@ -11,6 +11,7 @@ const AppContextProvider = (props) => {
 
     const [token, setToken] = useState(localStorage.getItem('token') || '');
     const [list, setList] = useState([]);
+    const [ElevatorList, setElevatorList] = useState([]);
 
     const fetchProjectList = async () => {
         const response = await axios.get(backendUrl + "/api/project/list");
@@ -22,10 +23,21 @@ const AppContextProvider = (props) => {
         }
     };
 
+    const fetchElevatorList = async () => {
+        const response = await axios.get(backendUrl + "/api/elevator/list");
+        if (response.data.success) {
+            setElevatorList(response.data.data);
+            console.log(response.data.data);
+        } else {
+            toast.error("Error fetching list");
+        }
+    };
+
     const value = {
         token, setToken,
         navigate,
         fetchProjectList, list, setList,
+        fetchElevatorList, ElevatorList, setElevatorList,
     }
 
     return (
