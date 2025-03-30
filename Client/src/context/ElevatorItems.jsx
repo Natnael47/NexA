@@ -2,22 +2,23 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { backendUrl } from '../App';
 
-
-const ElevatorItems = ({ id, image, name, price, description }) => {
+const ElevatorItems = ({ id, image, name, category, description }) => {
     return (
-        <Link to={`/product/${id}`} className='text-gray-700 cursor-pointer'>
-            <div>
+        <Link to={`/product/${id}`} className='block bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300'>
+            <div className='w-full h-[250px] overflow-hidden flex justify-center items-center bg-gray-100'>
                 <img
-                    className="w-full h-[200px] object-cover group-hover:scale-105 transition-transform duration-300"
-                    src={`${backendUrl || ""}/images/${image || ""}`}
+                    className='w-full h-full object-cover object-center'
+                    src={`${backendUrl || ""}/images/${image || "default.jpg"}`}
                     alt={name}
                 />
             </div>
-            <p className='pt-3 pb-1 text-sm'>{name}</p>
-            <p className='text-sm font-medium'>{price}</p>
-            <p className='text-sm font-medium'>{description}</p>
+            <div className='p-4'>
+                <p className='text-lg font-semibold truncate'>{name}</p>
+                <p className='text-sm text-gray-500'>{category}</p>
+                <p className='text-sm text-gray-600 line-clamp-2'>{description}</p>
+            </div>
         </Link>
-    )
-}
+    );
+};
 
-export default ElevatorItems
+export default ElevatorItems;

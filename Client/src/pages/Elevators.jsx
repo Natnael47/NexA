@@ -22,7 +22,7 @@ const Elevators = () => {
                             id={project._id}
                             image={project.images[0]}
                             name={project.title}
-                            price={project.price}
+                            category={project.category}
                             description={project.description} />
                     ))
                 }
