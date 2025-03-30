@@ -9,8 +9,8 @@ const Home = () => {
     return (
         <div className='w-full overflow-hidden'>
             <Header />
-            <About />
             <All_Projects />
+            <About />
             <Testimonials />
             <Contact />
         </div>

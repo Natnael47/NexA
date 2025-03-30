@@ -1,8 +1,12 @@
+import touristImage from "./Airplane.png";
 import brand_img from "./brand_img.png";
+import computerImage from "./computer.png";
 import constructionImg from "./construction.jpg";
 import cross_icon from "./cross_icon.svg";
+import elevatorImage from "./elevtor.png";
 import googleMap from "./googlemap.png";
 import header_img from "./header_img.png";
+import hvacImage from "./hvac.png";
 import left_arrow from "./left_arrow.svg";
 import nexa_logo from "./Logo-1.png";
 import logo from "./logo.svg";
@@ -19,11 +23,17 @@ import project_img_5 from "./project_img_5.jpg";
 import project_img_6 from "./project_img_6.jpg";
 import right_arrow from "./right_arrow.svg";
 import star_icon from "./star_icon.svg";
+import tunnelImage from "./tunnel.png";
 
 export const assets = {
   nexa_logo,
   googleMap,
   constructionImg,
+  elevatorImage,
+  tunnelImage,
+  hvacImage,
+  touristImage,
+  computerImage,
   logo,
   logo_dark,
   cross_icon,
@@ -41,10 +51,11 @@ export const assets = {
 
 export const projectsData = [
   {
+    _id: "120482",
     title: "Skyline Haven",
     price: "$2,50,000",
     location: "California",
-    image: project_img_1,
+    image: [project_img_1, project_img_2, project_img_3, project_img_4],
   },
   {
     title: "Vista Verde",
