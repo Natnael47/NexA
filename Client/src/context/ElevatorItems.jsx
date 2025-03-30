@@ -13,8 +13,8 @@ const ElevatorItems = ({ id, image, name, category, description }) => {
                 />
             </div>
             <div className='p-4'>
-                <p className='text-lg font-semibold truncate'>{name}</p>
-                <p className='text-sm text-gray-500'>{category}</p>
+                <p className='text-xl font-bold text-gray-800 truncate'>{name}</p>
+                <p className='text-sm font-medium text-blue-600 mb-1'>{category}</p>
                 <p className='text-sm text-gray-600 line-clamp-2'>{description}</p>
             </div>
         </Link>
