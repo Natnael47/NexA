@@ -4,6 +4,7 @@ import { ToastContainer } from 'react-toastify';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import { AppContext } from './context/AppContext';
+import Add_Elevators from './pages/Add_Elevators';
 import Add_Project from './pages/Add_Project';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
@@ -28,6 +29,7 @@ const App = () => {
           <Route path='/projects' element={<Projects />} />
           <Route path='/add' element={<Add_Project />} />
           <Route path='/view/:projectId' element={<View />} />
+          <Route path='/new-elevators' element={<Add_Elevators />} />
         </Routes>
       </div>
     </div>
