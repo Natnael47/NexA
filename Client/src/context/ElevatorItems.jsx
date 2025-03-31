@@ -4,20 +4,23 @@ import { backendUrl } from '../App';
 
 const ElevatorItems = ({ id, image, name, category, description }) => {
     return (
-        <Link to={`/product/${id}`} className='block bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300'>
-            <div className='w-full h-[250px] overflow-hidden flex justify-center items-center bg-gray-100'>
-                <img
-                    className='w-full h-full object-cover object-center'
-                    src={`${backendUrl || ""}/images/${image || "default.jpg"}`}
-                    alt={name}
-                />
-            </div>
-            <div className='p-4'>
-                <p className='text-xl font-bold text-gray-800 truncate'>{name}</p>
-                <p className='text-sm font-medium text-blue-600 mb-1'>{category}</p>
-                <p className='text-sm text-gray-600 line-clamp-2'>{description}</p>
-            </div>
-        </Link>
+        <div className='relative w-full overflow-visible pb-10'>
+            <Link to={`/product/${id}`} className='block'>
+                <div className='w-full h-[400px] overflow-hidden rounded-sm'>
+                    <img
+                        src={`${backendUrl || ""}/images/${image || "default.jpg"}`}
+                        alt={name}
+                        className='w-full h-full object-cover'
+                    />
+                </div>
+                <div className='absolute left-0 right-0 bottom-[-5px] flex justify-center'>
+                    <div className='inline-block bg-white w-3/4 px-4 py-3 shadow-lg'>
+                        <h2 className='text-xl font-semibold text-gray-800'>{name}</h2>
+                        <p>{category} <span className='px-1'>|</span> {name}</p>
+                    </div>
+                </div>
+            </Link>
+        </div>
     );
 };
 

@@ -55,7 +55,7 @@ export const projectsData = [
     title: "Skyline Haven",
     price: "$2,50,000",
     location: "California",
-    image: [project_img_1, project_img_2, project_img_3, project_img_4],
+    image: project_img_1,
   },
   {
     title: "Vista Verde",
