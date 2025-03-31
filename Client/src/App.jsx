@@ -7,7 +7,11 @@ import Construction from './pages/Construction';
 import Contact from './pages/Contact';
 import Elevators from './pages/Elevators';
 import Home from './pages/Home';
+import HVAC from './pages/HVAC';
 import Product from './pages/Product';
+import Software from './pages/Software';
+import Tourism from './pages/Tourism';
+import Tunnels from './pages/Tunnels';
 
 export const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
@@ -26,6 +30,11 @@ const App = () => {
           <Route path='/contact-us' element={<Contact />} />
           <Route path='/elevators' element={<Elevators />} />
           <Route path='/product/:productId' element={<Product />} />
+
+          <Route path='/hvac' element={<HVAC />} />
+          <Route path='/software' element={<Software />} />
+          <Route path='/tunnels' element={<Tunnels />} />
+          <Route path='/tourism' element={<Tourism />} />
         </Routes>
       </div>
       <Footer />

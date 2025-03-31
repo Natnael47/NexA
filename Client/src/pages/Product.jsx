@@ -47,7 +47,7 @@ const Product = () => {
                     </div>
                     {/* Main image */}
                     <div className='w-full sm:w-[80%]'>
-                        {mainImage && <img src={mainImage} className='w-full h-[600px] object-cover rounded-lg shadow-xl' alt='Selected Elevator' />}
+                        {mainImage && <img src={mainImage} className='w-full h-[600px] object-cover rounded-lg shadow-md' alt='Selected Elevator' />}
                     </div>
                 </div>
                 {/* Product Info */}

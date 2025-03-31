@@ -1,7 +1,16 @@
 import touristImage from "./Airplane.png";
+import background_image_2 from "./bg2.jpg";
+import background_image_3 from "./bg3.jpg";
+import background_image_4 from "./bg4.jpg";
+import background_image_5 from "./bg5.jpg";
+import background_image_6 from "./bg6.jpg";
+import background_image_7 from "./bg7.jpg";
 import brand_img from "./brand_img.png";
 import computerImage from "./computer.png";
-import constructionImg from "./construction.jpg";
+import {
+  default as background_image_1,
+  default as constructionImg,
+} from "./construction.jpg";
 import cross_icon from "./cross_icon.svg";
 import elevatorImage from "./elevtor.png";
 import googleMap from "./googlemap.png";
@@ -27,6 +36,13 @@ import tunnelImage from "./tunnel.png";
 
 export const assets = {
   nexa_logo,
+  background_image_1,
+  background_image_2,
+  background_image_3,
+  background_image_4,
+  background_image_5,
+  background_image_6,
+  background_image_7,
   googleMap,
   constructionImg,
   elevatorImage,
