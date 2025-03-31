@@ -1,14 +1,26 @@
+import { motion } from "framer-motion";
 import { Mail, MapPin, Phone } from 'lucide-react';
 import React from 'react';
 
 const Contact = () => {
     return (
-        <div className='text-center p-6 py-20 lg:px-32 w-full overflow-hidden' id='Contact'>
+        <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
+            className='text-center p-6 py-20 lg:px-32 w-full overflow-hidden' id='Contact'
+        >
             <h1 className='text-2xl sm:text-4xl font-bold mb-2 text-center'>Contact <span className='font-light underline underline-offset-4 decoration-1'>With Us</span></h1>
             <p className='text-center text-gray-500 mb-4 max-w-80 mx-auto'>Ready to make a move? Let's Build your Future Together</p>
 
-            {/* Contact Form */}
-            <div className="max-w-6xl mx-auto bg-white rounded-2xl p-6">
+            <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true, amount: 0.3 }}
+                className="max-w-6xl mx-auto bg-white rounded-2xl p-6"
+            >
                 <form className="text-gray-600">
                     <div className="flex flex-wrap -mx-4">
                         <div className="w-full md:w-1/2 px-4 mb-4 md:mb-0">
@@ -26,13 +38,23 @@ const Contact = () => {
                     </div>
                     <button className="bg-blue-600 text-white py-3 px-12 cursor-pointer rounded hover:bg-blue-800 transition-all w-full md:w-auto">Send Message</button>
                 </form>
-            </div>
+            </motion.div>
 
-            <div className="max-w-6xl mx-auto bg-white rounded-2xl p-10 flex flex-col gap-10 mt-5 shadow-2xl">
-                {/* Contact Details and Map Section */}
+            <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                viewport={{ once: true, amount: 0.3 }}
+                className="max-w-6xl mx-auto bg-white rounded-2xl p-10 flex flex-col gap-10 mt-5 shadow-2xl"
+            >
                 <div className="flex flex-col md:flex-row items-center md:items-start justify-between gap-12">
-                    {/* Left Side - Contact Info */}
-                    <div className="space-y-6 text-gray-800 w-full md:w-1/2 text-start">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.4 }}
+                        viewport={{ once: true, amount: 0.3 }}
+                        className="space-y-6 text-gray-800 w-full md:w-1/2 text-start"
+                    >
                         <h2 className="text-3xl font-bold text-gray-900">Get in Touch</h2>
                         <p className="text-gray-600 text-lg">Have questions or need assistance? Feel free to contact us using the details below.</p>
 
@@ -50,19 +72,31 @@ const Contact = () => {
                                 title: "Email Us",
                                 description: "info@NexaEngsolutions.com.et - We respond promptly to all inquiries."
                             }].map(({ Icon, title, description }, index) => (
-                                <div key={index} className="flex items-center gap-4">
+                                <motion.div
+                                    key={index}
+                                    initial={{ opacity: 0, x: -30 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    transition={{ duration: 0.6, delay: index * 0.2 }}
+                                    viewport={{ once: true, amount: 0.3 }}
+                                    className="flex items-center gap-4"
+                                >
                                     <Icon className="text-blue-600 w-8 h-8 flex-shrink-0" />
                                     <div>
                                         <p className="text-lg font-semibold">{title}</p>
                                         <p className="text-gray-600 text-sm">{description}</p>
                                     </div>
-                                </div>
+                                </motion.div>
                             ))}
                         </div>
-                    </div>
+                    </motion.div>
 
-                    {/* Right Side - Google Map */}
-                    <div className="w-full md:w-1/2 h-[380px] rounded-xl overflow-hidden shadow-md">
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.8, delay: 0.6 }}
+                        viewport={{ once: true, amount: 0.3 }}
+                        className="w-full md:w-1/2 h-[380px] rounded-xl overflow-hidden shadow-md"
+                    >
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1970.3400603197986!2d38.76682540993323!3d9.001552685988335!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b85bf78ae5f39%3A0x5876d9eab73e5228!2zTWVya2ViIFBsYXphIHwgT2xvbXBpYSB8IOGImOGIreGKqOGJpSDhjZXhiIvhi5sgfCDhiqbhiI7hiJ3hjZLhi6s!5e0!3m2!1sen!2set!4v1743275783641!5m2!1sen!2set"
                             width="100%"
@@ -72,11 +106,10 @@ const Contact = () => {
                             loading="lazy"
                             referrerPolicy="no-referrer-when-downgrade"
                         ></iframe>
-                    </div>
+                    </motion.div>
                 </div>
-            </div>
-
-        </div>
+            </motion.div>
+        </motion.div>
     );
 };
 
