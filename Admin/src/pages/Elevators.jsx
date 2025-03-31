@@ -77,7 +77,7 @@ const Elevators = () => {
                             <p className="font-semibold text-gray-800">{elevator.title}</p>
                             <p className="text-black text-base font-semibold bg-gray-200 px-3 py-1 rounded text-center">{elevator.category}</p>
                             <div className="flex justify-center space-x-4">
-                                <button className="text-blue-500 hover:text-blue-700" onClick={() => navigate(`/view/${elevator._id}`)}>View</button>
+                                <button className="text-blue-500 hover:text-blue-700" onClick={() => navigate(`/view2/${elevator._id}`)}>View</button>
                                 <button className="text-red-500 hover:text-red-700" onClick={() => openModal(elevator._id)}>Delete</button>
                             </div>
                         </div>
