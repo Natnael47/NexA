@@ -28,7 +28,7 @@ const AppContextProvider = (props) => {
         const response = await axios.get(backendUrl + "/api/elevator/list");
         if (response.data.success) {
             setElevatorList(response.data.data);
-            console.log(response.data.data);
+            // console.log(response.data.data);
         } else {
             toast.error("Error fetching list");
         }
