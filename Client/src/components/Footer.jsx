@@ -1,7 +1,9 @@
-import React from 'react'
-import { assets } from '../assets/assets'
+import React, { useContext } from 'react';
+import { assets } from '../assets/assets';
+import { AppContext } from '../context/AppContext';
 
 const Footer = () => {
+    const { navigate } = useContext(AppContext);
     return (
         <div className='pt-10 md:px-20 px-4 lg:px-32 bg-gray-900 w-full overflow-hidden' id='Footer'>
             <div className='container mx-auto flex flex-col md:flex-row justify-between items-center'>
@@ -13,9 +15,9 @@ const Footer = () => {
                 <div className='w-full md:w-1/5 mb-8 md:mb-0'>
                     <h3 className='text-white text-lg font-bold mb-4'>Company</h3>
                     <ul className='flex flex-col gap-2 text-gray-400'>
-                        <a href="#Header" className='hover:text-white'>Home</a>
-                        <a href="#About" className='hover:text-white'>About Us</a>
-                        <a href="#Contact" className='hover:text-white'>Contact Us</a>
+                        <a href="" onClick={() => navigate('/')} className='hover:text-white'>Home</a>
+                        <a href="" onClick={() => navigate('/about')} className='hover:text-white'>About Us</a>
+                        <a href="" onClick={() => navigate('/contact-us')} className='hover:text-white'>Contact Us</a>
                         <a href="#" className='hover:text-white'>Privacy Policy</a>
                     </ul>
                 </div>
