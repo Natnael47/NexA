@@ -7,7 +7,7 @@ const Testimonials = () => {
         <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            transition={{ duration: 1 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true, amount: 0.3 }} // Starts animating when 30% of the section is in view
             className="container mx-auto py-10 px-6 lg:px-32 w-full"
             id="Testimonials"

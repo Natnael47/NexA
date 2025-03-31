@@ -7,7 +7,7 @@ const Contact = () => {
         <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true, amount: 0.3 }}
             className='text-center p-6 py-20 lg:px-32 w-full overflow-hidden' id='Contact'
         >
@@ -93,7 +93,7 @@ const Contact = () => {
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.8, delay: 0.6 }}
+                        transition={{ duration: 0.8, delay: 0.4 }}
                         viewport={{ once: true, amount: 0.3 }}
                         className="w-full md:w-1/2 h-[380px] rounded-xl overflow-hidden shadow-md"
                     >

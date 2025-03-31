@@ -31,7 +31,7 @@ const All_Projects = () => {
         <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true, amount: 0.2 }} // Starts animating when 20% of the section is in view
             className="container mx-auto py-20 px-6 md:px-20 text-center"
             id="Services"

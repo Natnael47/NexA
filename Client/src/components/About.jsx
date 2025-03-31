@@ -9,7 +9,7 @@ const About = () => {
         <motion.div
             initial={{ opacity: 0, x: 200 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true, amount: 0.2 }} // Starts animating when 30% of the section is in view
             className="flex flex-col items-center justify-between container mx-auto p-14 md:px-20 lg:px-32 w-full overflow-hidden"
             id="About"
