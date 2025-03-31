@@ -5,7 +5,7 @@ import {
   deleteElevatorById,
   getAllElevators,
   updateElevatorById,
-} from "../controller/ElevatorControl.js";
+} from "../controller/ElevatorPrisControl.js";
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
