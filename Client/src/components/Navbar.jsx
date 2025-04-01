@@ -20,16 +20,27 @@ const Navbar = () => {
     return (
         <div className='top-0 left-0 w-full z-10 absolute'>
             <div className='container mx-auto flex justify-between items-center py-4 px-6 md:px-20 lg:px-32 bg-transparent'>
-                <img src={assets.logo} alt="" className='w-[150px] h-[100px]' onClick={() => navigate('/')} />
-                <ul className='hidden md:flex gap-7 text-white '>
+                <img
+                    src={assets.logo}
+                    alt="Logo"
+                    className='w-[200px] h-[120px] max-w-[200px] max-h-[120px] object-contain flex-shrink-0'
+                    onClick={() => navigate('/')}
+                />
+                <ul className='hidden md:flex gap-7 text-white'>
                     <a href="#Header" className='cursor-pointer hover:text-gray-400'>Home</a>
                     <a href="#About" className='cursor-pointer hover:text-gray-400'>About</a>
                     <a href="#Services" className='cursor-pointer hover:text-gray-400'>Services</a>
                     <a href="#Contact" className='cursor-pointer hover:text-gray-400'>Contact us</a>
                 </ul>
                 <button className='hidden md:block bg-white px-8 py-2 rounded-full'>Sign up</button>
-                <img src={assets.menu_icon} onClick={() => setShowMobileMenu(true)} className='md:hidden w-7 cursor-pointer' alt="" />
+                <img
+                    src={assets.menu_icon}
+                    onClick={() => setShowMobileMenu(true)}
+                    className='md:hidden w-7 cursor-pointer'
+                    alt="Menu"
+                />
             </div>
+
             {/*---------------mobile menu --------------------*/}
             <div className={`md:hidden ${showMobileMenu ? 'fixed w-full' : 'h-0 w-0'}  right-0 top-0 bottom-0 overflow-hidden bg-white transition-all`}>
                 <div className='flex justify-end p-6 cursor-pointer'>

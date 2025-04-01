@@ -8,7 +8,7 @@ const Footer = () => {
         <div className='pt-10 md:px-20 px-4 lg:px-32 bg-gray-900 w-full overflow-hidden' id='Footer'>
             <div className='container mx-auto flex flex-col md:flex-row justify-between items-center'>
                 <div className='w-full md:w-1/3 mb-8 md:mb-0'>
-                    <img src={assets.logo_dark} alt="" />
+                    <img src={assets.nexa_logo} alt="" className='w-[135px] h-[45px]' />
                     <p className='text-gray-400 mt-4'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium nobis architecto consequuntur,aut debitis ullam eos harum rem veniam!</p>
                 </div>
 
