@@ -18,7 +18,7 @@ import header_img from "./header_img.png";
 import hvacImage from "./hvac.png";
 import left_arrow from "./left_arrow.svg";
 import nexa_logo from "./Logo-1.png";
-import logo from "./logo.svg";
+import logo from "./logo23.png";
 import logo_dark from "./logo_dark.svg";
 import menu_icon from "./menu_icon.svg";
 import profile_img_3 from "./photo_Abdu.jpg";

@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { assets } from "../assets/assets";
+import { AppContext } from "../context/AppContext";
 import Navbar from "./Navbar";
 
 const backgroundImages = [
@@ -15,6 +16,7 @@ const backgroundImages = [
 
 const Header = () => {
     const [index, setIndex] = useState(0);
+    const { navigate } = useContext(AppContext);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -63,10 +65,11 @@ const Header = () => {
                     className="space-x-6 mt-16"
                 >
                     <a
-                        href="#Projects"
+                        href=""
                         className="bg-white text-black font-medium py-3 rounded px-8 transition hover:bg-gray-200 shadow-lg"
+                        onClick={() => navigate('/elevators')}
                     >
-                        Projects
+                        Products
                     </a>
                     <a
                         href="#Contact"

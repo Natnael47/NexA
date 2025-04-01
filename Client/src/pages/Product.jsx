@@ -1,3 +1,4 @@
+import { Mail, MapPin, Phone } from 'lucide-react';
 import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { backendUrl } from '../App';
@@ -52,9 +53,66 @@ const Product = () => {
                 </div>
                 {/* Product Info */}
                 <div className='flex-1'>
-                    <h1 className='font-medium text-2xl mt-2'>{productData.title}</h1>
-                    <p className='mt-2 text-gray-600'>{productData.description}</p>
+                    <h1 className='font-bold text-3xl text-gray-900 mt-2'>{productData.title}</h1>
+                    <p className='mt-2 text-lg text-gray-700 leading-relaxed'>{productData.description}</p>
+
+                    {/* Contact Details and Map Section */}
+                    <div className="flex flex-col md:flex-row items-center md:items-start justify-between gap-12 mt-6">
+                        {/* Left Side - Contact Info */}
+                        <div className="space-y-6 text-gray-800 w-full md:w-1/2">
+                            <h2 className="text-3xl font-bold text-gray-900">Our Office Location</h2>
+                            <p className="text-gray-600 text-lg">
+                                We welcome you to visit our office for any inquiries, consultations, or business discussions. Feel free to reach out using the contact details below.
+                            </p>
+
+                            <div className="space-y-6">
+                                <div className="flex items-start gap-4">
+                                    <MapPin className="text-blue-600 w-7 h-7" />
+                                    <div>
+                                        <p className="text-lg font-semibold">Office Address</p>
+                                        <p className="text-gray-600 text-sm">
+                                            Merkeb Plaza, Olompia - Conveniently located in the heart of the city.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className="flex items-start gap-4">
+                                    <Phone className="text-blue-600 w-7 h-7" />
+                                    <div>
+                                        <p className="text-lg font-semibold">Contact Number</p>
+                                        <p className="text-gray-600 text-sm">
+                                            0216 331 11 80 - Available during business hours for any inquiries.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className="flex items-start gap-4">
+                                    <Mail className="text-blue-600 w-7 h-7" />
+                                    <div>
+                                        <p className="text-lg font-semibold">Email Address</p>
+                                        <p className="text-gray-600 text-sm">
+                                            info@NexaEngsolutions.com.et - We respond promptly to all inquiries.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Right Side - Google Map */}
+                        <div className="w-full md:w-1/2 h-[380px] rounded-xl overflow-hidden">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1970.3400603197986!2d38.76682540993323!3d9.001552685988335!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b85bf78ae5f39%3A0x5876d9eab73e5228!2zTWVya2ViIFBsYXphIHwgT2xvbXBpYSB8IOGImOGIreGKqOGJpSDhjZXhiIvhi5sgfCDhiqbhiI7hiJ3hjZLhi6s!5e0!3m2!1sen!2set!4v1743275783641!5m2!1sen!2set"
+                                width="100%"
+                                height="100%"
+                                style={{ border: 0 }}
+                                allowFullScreen
+                                loading="lazy"
+                                referrerPolicy="no-referrer-when-downgrade"
+                            ></iframe>
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </div>
     ) : <div className='text-center text-gray-500 py-20'>Loading product details...</div>;
