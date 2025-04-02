@@ -64,78 +64,80 @@ const Add_Elevators = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="flex flex-col w-full items-start m-5">
-            <div>
-                <p className="mb-2 font-semibold">Upload Images</p>
-                <div className="flex gap-2">
-                    {[0, 1, 2, 3].map((index) => (
-                        <label key={index} htmlFor={`image${index}`} className="cursor-pointer">
-                            <img
-                                className="w-[150px] h-[100px] object-cover rounded-md border"
-                                src={formData.imagePreviews[index] || assets.upload_area}
-                                alt="Upload Preview"
-                            />
-                            <input
-                                type="file"
-                                id={`image${index}`}
-                                hidden
-                                onChange={(e) => handleImageChange(e, index)}
-                            />
-                        </label>
-                    ))}
+        <div className="bg-white m-4 p-4 rounded-lg shadow-xl">
+            <form onSubmit={handleSubmit} className="flex flex-col w-full items-start m-5">
+                <div>
+                    <p className="mb-2 font-semibold">Upload Images</p>
+                    <div className="flex gap-2">
+                        {[0, 1, 2, 3].map((index) => (
+                            <label key={index} htmlFor={`image${index}`} className="cursor-pointer">
+                                <img
+                                    className="w-[150px] h-[100px] object-cover rounded-md border"
+                                    src={formData.imagePreviews[index] || assets.upload_area}
+                                    alt="Upload Preview"
+                                />
+                                <input
+                                    type="file"
+                                    id={`image${index}`}
+                                    hidden
+                                    onChange={(e) => handleImageChange(e, index)}
+                                />
+                            </label>
+                        ))}
+                    </div>
                 </div>
-            </div>
 
-            <div className="w-full flex flex-col gap-6 mb-6 mt-3">
-                <label className="flex flex-col w-[620px]">
-                    <p className="mb-1 font-semibold text-gray-700">Elevator Name</p>
-                    <input
-                        type="text"
-                        name="title"
-                        value={formData.title}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
-                    />
-                </label>
+                <div className="w-full flex flex-col gap-6 mb-6 mt-3">
+                    <label className="flex flex-col w-[620px]">
+                        <p className="mb-1 font-semibold text-gray-700">Elevator Name</p>
+                        <input
+                            type="text"
+                            name="title"
+                            value={formData.title}
+                            onChange={handleChange}
+                            required
+                            className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+                        />
+                    </label>
 
-                <label className="flex flex-col w-[620px]">
-                    <p className="mb-1 font-semibold text-gray-700">Category</p>
-                    <select
-                        name="category"
-                        value={formData.category}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
-                    >
-                        <option value="">Select Category</option>
-                        <option value="Residential">Residential</option>
-                        <option value="Commercial">Commercial</option>
-                        <option value="Industrial">Industrial</option>
-                    </select>
-                </label>
+                    <label className="flex flex-col w-[620px]">
+                        <p className="mb-1 font-semibold text-gray-700">Category</p>
+                        <select
+                            name="category"
+                            value={formData.category}
+                            onChange={handleChange}
+                            required
+                            className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+                        >
+                            <option value="">Select Category</option>
+                            <option value="Residential">Residential</option>
+                            <option value="Commercial">Commercial</option>
+                            <option value="Industrial">Industrial</option>
+                        </select>
+                    </label>
 
-                <label className="flex flex-col w-[620px]">
-                    <p className="mb-1 font-semibold text-gray-700">Description</p>
-                    <textarea
-                        name="description"
-                        value={formData.description}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
-                        rows="3"
-                        placeholder="Write Description Here"
-                        required
-                    />
-                </label>
-            </div>
+                    <label className="flex flex-col w-[620px]">
+                        <p className="mb-1 font-semibold text-gray-700">Description</p>
+                        <textarea
+                            name="description"
+                            value={formData.description}
+                            onChange={handleChange}
+                            className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+                            rows="3"
+                            placeholder="Write Description Here"
+                            required
+                        />
+                    </label>
+                </div>
 
-            <button
-                type="submit"
-                className="px-6 py-3 text-white bg-green-500 rounded-lg hover:bg-green-600 transition"
-            >
-                Add Elevator
-            </button>
-        </form>
+                <button
+                    type="submit"
+                    className="px-6 py-3 text-white bg-blue-500 rounded-lg hover:bg-green-600 transition"
+                >
+                    Add Elevator
+                </button>
+            </form>
+        </div>
     );
 };
 

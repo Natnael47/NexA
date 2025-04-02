@@ -1,34 +1,59 @@
-import { BriefcaseBusiness, House, SquarePlus } from 'lucide-react';
+import { Building, House, SquarePlus, WashingMachine } from 'lucide-react';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 const Sidebar = () => {
     return (
-        <div className='min-h-screen bg-gray-200 border-r'>
-            <div className='text-gray-800 mt-5'>
-                <NavLink className={({ isActive }) => `flex items-center gap-3 py-3.5 px-3 md:px-9 md:min-w-62 cursor-pointer ${isActive ? 'bg-[#fcf9c6] border-r-5 border-[#FFC628]' : ''}`} to={'/'}>
+        <div className="min-h-screen bg-white border-r w-64 flex-shrink-0 overflow-hidden">
+            <div className="text-gray-800 mt-5">
+                <NavLink
+                    className={({ isActive }) =>
+                        `flex items-center gap-3 py-3.5 px-3 md:px-9 cursor-pointer w-full ${isActive ? 'bg-[#fcf9c6] border-r-4 border-[#FFC628]' : 'hover:bg-[#f4f4f4]'} transition-all duration-200`
+                    }
+                    to={'/'}
+                >
                     <House size={28} />
-                    <p className='hidden md:block'>Dashboard</p>
+                    <p className="hidden md:block whitespace-nowrap">Dashboard</p>
                 </NavLink>
-                <NavLink className={({ isActive }) => `flex items-center gap-3 py-3.5 px-3 md:px-9 md:min-w-62 cursor-pointer ${isActive ? 'bg-[#fcf9c6] border-r-5 border-[#FFC628]' : ''}`} to={'/new-project'}>
+                <NavLink
+                    className={({ isActive }) =>
+                        `flex items-center gap-3 py-3.5 px-3 md:px-9 cursor-pointer w-full ${isActive ? 'bg-[#fcf9c6] border-r-4 border-[#FFC628]' : 'hover:bg-[#f4f4f4]'} transition-all duration-200`
+                    }
+                    to={'/new-project'}
+                >
                     <SquarePlus size={28} />
-                    <p className='hidden md:block'>New Construction</p>
+                    <p className="hidden md:block whitespace-nowrap">New Construction</p>
                 </NavLink>
-                <NavLink className={({ isActive }) => `flex items-center gap-3 py-3.5 px-3 md:px-9 md:min-w-62 cursor-pointer ${isActive ? 'bg-[#fcf9c6] border-r-5 border-[#FFC628]' : ''}`} to={'/projects'}>
-                    <BriefcaseBusiness size={28} />
-                    <p className='hidden md:block'>My Projects</p>
+                <NavLink
+                    className={({ isActive }) =>
+                        `flex items-center gap-3 py-3.5 px-3 md:px-9 cursor-pointer w-full ${isActive ? 'bg-[#fcf9c6] border-r-4 border-[#FFC628]' : 'hover:bg-[#f4f4f4]'} transition-all duration-200`
+                    }
+                    to={'/projects'}
+                >
+                    <Building size={28} />
+                    <p className="hidden md:block whitespace-nowrap">My Projects</p>
                 </NavLink>
-                <NavLink className={({ isActive }) => `flex items-center gap-3 py-3.5 px-3 md:px-9 md:min-w-62 cursor-pointer ${isActive ? 'bg-[#fcf9c6] border-r-5 border-[#FFC628]' : ''}`} to={'/new-elevators'}>
+                <NavLink
+                    className={({ isActive }) =>
+                        `flex items-center gap-3 py-3.5 px-3 md:px-9 cursor-pointer w-full ${isActive ? 'bg-[#fcf9c6] border-r-4 border-[#FFC628]' : 'hover:bg-[#f4f4f4]'} transition-all duration-200`
+                    }
+                    to={'/new-elevators'}
+                >
                     <SquarePlus size={28} />
-                    <p className='hidden md:block'>New Elevators</p>
+                    <p className="hidden md:block whitespace-nowrap">New Elevators</p>
                 </NavLink>
-                <NavLink className={({ isActive }) => `flex items-center gap-3 py-3.5 px-3 md:px-9 md:min-w-62 cursor-pointer ${isActive ? 'bg-[#fcf9c6] border-r-5 border-[#FFC628]' : ''}`} to={'/elevator-list'}>
-                    <BriefcaseBusiness size={28} />
-                    <p className='hidden md:block'>Elevators</p>
+                <NavLink
+                    className={({ isActive }) =>
+                        `flex items-center gap-3 py-3.5 px-3 md:px-9 cursor-pointer w-full ${isActive ? 'bg-[#fcf9c6] border-r-4 border-[#FFC628]' : 'hover:bg-[#f4f4f4]'} transition-all duration-200`
+                    }
+                    to={'/elevator-list'}
+                >
+                    <WashingMachine size={28} />
+                    <p className="hidden md:block whitespace-nowrap">Elevators</p>
                 </NavLink>
             </div>
         </div>
-    )
+    );
 }
 
-export default Sidebar
+export default Sidebar;

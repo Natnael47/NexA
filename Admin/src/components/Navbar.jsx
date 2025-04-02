@@ -40,9 +40,9 @@ const Navbar = () => {
     };
 
     return (
-        <div className='flex items-center py-2 px-[4%] justify-between bg-white border-b-2'>
+        <div className='flex items-center py-2 px-[4%] justify-between bg-black border-b-2'>
             {/* Logo */}
-            <img src={assets.nexa_logo} alt="Nexa Logo" className='w-[max(8%,50px)]' />
+            <img src={assets.nexa_logo} alt="Nexa Logo" className='w-[135px] h-[45px] hover:scale-1.5 cursor-pointer m-2' />
 
             {/* Greeting and Logout Button */}
             <div className='flex items-center space-x-4 mr-5'>
