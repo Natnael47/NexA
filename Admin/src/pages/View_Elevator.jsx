@@ -43,7 +43,18 @@ const View_Elevator = () => {
         }
     };
 
-    const handleRemoveImage = (index) => {
+    const handleRemoveImage = async (index) => {
+        const imageToRemove = editedElevator.images[index];
+        if (typeof imageToRemove === 'string') {
+            try {
+                await axios.put(`${backendUrl}/api/elevator/remove-image/${projectId}`, { image: imageToRemove });
+                toast.success("Image removed successfully");
+                fetchElevatorList();
+            } catch (error) {
+                console.error("Error removing image:", error);
+                toast.error("Error removing image");
+            }
+        }
         setEditedElevator(prev => {
             const newImages = [...prev.images];
             newImages.splice(index, 1);
@@ -70,7 +81,7 @@ const View_Elevator = () => {
             setIsEditing(false);
         } catch (error) {
             console.error("Error updating elevator:", error);
-            toast.error(response.data.message || "Error updating elevator");
+            toast.error("Error updating elevator");
         }
     };
 
