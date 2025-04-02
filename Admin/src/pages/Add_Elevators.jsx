@@ -86,8 +86,8 @@ const Add_Elevators = () => {
                 </div>
             </div>
 
-            <div className="flex flex-wrap justify-between w-full gap-6 mb-6">
-                <label className="w-full">
+            <div className="w-full flex flex-col gap-6 mb-6 mt-3">
+                <label className="flex flex-col w-[620px]">
                     <p className="mb-1 font-semibold text-gray-700">Elevator Name</p>
                     <input
                         type="text"
@@ -95,12 +95,28 @@ const Add_Elevators = () => {
                         value={formData.title}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-1 focus:ring-yellow-300"
+                        className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
                     />
                 </label>
 
-                <label className="w-full">
-                    <p className="mb-2 font-semibold text-gray-700">Description</p>
+                <label className="flex flex-col w-[620px]">
+                    <p className="mb-1 font-semibold text-gray-700">Category</p>
+                    <select
+                        name="category"
+                        value={formData.category}
+                        onChange={handleChange}
+                        required
+                        className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+                    >
+                        <option value="">Select Category</option>
+                        <option value="Residential">Residential</option>
+                        <option value="Commercial">Commercial</option>
+                        <option value="Industrial">Industrial</option>
+                    </select>
+                </label>
+
+                <label className="flex flex-col w-[620px]">
+                    <p className="mb-1 font-semibold text-gray-700">Description</p>
                     <textarea
                         name="description"
                         value={formData.description}
@@ -110,22 +126,6 @@ const Add_Elevators = () => {
                         placeholder="Write Description Here"
                         required
                     />
-                </label>
-
-                <label className="w-full">
-                    <p className="mb-1 font-semibold text-gray-700">Category</p>
-                    <select
-                        name="category"
-                        value={formData.category}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-300"
-                    >
-                        <option value="">Select Category</option>
-                        <option value="Residential">Residential</option>
-                        <option value="Commercial">Commercial</option>
-                        <option value="Industrial">Industrial</option>
-                    </select>
                 </label>
             </div>
 

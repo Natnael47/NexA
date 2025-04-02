@@ -42,18 +42,18 @@ const Elevators = () => {
     };
 
     return (
-        <div className="m-5 w-full max-w-6xl bg-white rounded-xl p-6 shadow-lg">
+        <div className="w-full mt-5 ml-5 max-w-7xl bg-gray-100 rounded-xl p-2">
             <div className="flex items-center justify-between mb-6">
                 <h1 className="text-4xl font-bold text-gray-800">Elevator List</h1>
                 <button
                     className="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700"
-                    onClick={() => navigate("/add-elevator")}
+                    onClick={() => navigate("/new-elevators")}
                 >
                     + New Elevator
                 </button>
             </div>
 
-            <div className="bg-gray-100 rounded-lg overflow-scroll">
+            <div className="bg-gray-100 rounded-lg w-full max-h-[84vh] overflow-scroll shadow-lg">
                 <div className="grid grid-cols-[0.6fr_1.5fr_1fr_1fr] items-center gap-6 p-4 border-b bg-green-500 text-white text-lg font-semibold">
                     <b className="text-center">Image</b>
                     <b className="text-left">Title</b>
@@ -62,7 +62,7 @@ const Elevators = () => {
                 </div>
                 {ElevatorList.length > 0 ? (
                     ElevatorList.map((elevator, index) => (
-                        <div key={index} className={`grid grid-cols-[0.6fr_1.5fr_1fr_1fr] items-center gap-6 p-4 border-b ${index % 2 === 0 ? "bg-white" : "bg-gray-50"}`}>
+                        <div key={index} className={`grid grid-cols-[0.6fr_1fr_1.5fr_1fr] items-center gap-6 p-4 border-b ${index % 2 === 0 ? "bg-white" : "bg-gray-50"}`}>
                             <div className="text-center">
                                 {elevator.images.length > 0 ? (
                                     <img
@@ -75,7 +75,7 @@ const Elevators = () => {
                                 )}
                             </div>
                             <p className="font-semibold text-gray-800">{elevator.title}</p>
-                            <p className="text-black text-base font-semibold bg-gray-200 px-3 py-1 rounded text-center">{elevator.category}</p>
+                            <p className="text-black text-base font-semibold bg-gray-200 px-3 py-1 mr-10 rounded text-center">{elevator.category}</p>
                             <div className="flex justify-center space-x-4">
                                 <button className="text-blue-500 hover:text-blue-700" onClick={() => navigate(`/view2/${elevator._id}`)}>View</button>
                                 <button className="text-red-500 hover:text-red-700" onClick={() => openModal(elevator._id)}>Delete</button>

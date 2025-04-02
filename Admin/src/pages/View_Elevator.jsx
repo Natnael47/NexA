@@ -1,13 +1,15 @@
 import axios from 'axios';
+import { ChevronLeft } from 'lucide-react';
 import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { toast } from "react-toastify";
 import { backendUrl } from '../App';
+import { assets } from '../assets/assets';
 import { AppContext } from '../context/AppContext';
 
 const View_Elevator = () => {
     const { projectId } = useParams();
-    const { fetchElevatorList, ElevatorList } = useContext(AppContext);
+    const { fetchElevatorList, ElevatorList, navigate } = useContext(AppContext);
     const [isEditing, setIsEditing] = useState(false);
     const [editedElevator, setEditedElevator] = useState({ images: [], removeImages: [] });
 
@@ -86,23 +88,47 @@ const View_Elevator = () => {
     };
 
     return (
-        <div className="container mx-auto p-6 bg-gray-100 min-h-screen rounded-lg shadow-lg">
-            <h1 className="text-4xl font-bold mb-6 text-center text-blue-600">
-                {isEditing ? <input type="text" name="title" value={editedElevator.title || ''} onChange={handleChange} className="border p-2 rounded" /> : editedElevator.title}
+        <div className="container mx-auto p-8 bg-gray-100 min-h-screen rounded-lg shadow-lg flex flex-col items-start">
+            {!isEditing && (
+                <button
+                    onClick={() => navigate('/elevator-list')}
+                    className="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 transition-all mb-4"
+                >
+                    <ChevronLeft className="w-5 h-5" />
+                    Back
+                </button>
+            )}
+
+            <h1 className="text-4xl font-bold mb-2 text-left text-blue-600 bg-white p-2 rounded-lg shadow-md w-full">
+                {isEditing ? (
+                    <input
+                        type="text"
+                        name="title"
+                        value={editedElevator.title || ''}
+                        onChange={handleChange}
+                        className="border p-2 rounded w-full text-2xl"
+                    />
+                ) : (
+                    editedElevator.title
+                )}
             </h1>
 
-            <div className="flex flex-wrap justify-center gap-4 mb-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-2 bg-gray-100 p-2 rounded-lg w-full">
                 {[0, 1, 2, 3].map((index) => (
-                    <div key={index} className="relative">
+                    <div key={index} className="relative w-48 h-36">
                         <img
-                            src={editedElevator.images[index] ? (typeof editedElevator.images[index] === 'string' ? `${backendUrl}/images/${editedElevator.images[index]}` : URL.createObjectURL(editedElevator.images[index])) : 'placeholder.jpg'}
+                            src={editedElevator.images[index]
+                                ? (typeof editedElevator.images[index] === 'string'
+                                    ? `${backendUrl}/images/${editedElevator.images[index]}`
+                                    : URL.createObjectURL(editedElevator.images[index]))
+                                : assets.upload_area}
                             alt={`Elevator ${index + 1}`}
-                            className="w-48 h-36 rounded-lg object-cover shadow-md border border-gray-300 cursor-pointer"
+                            className="w-full h-full rounded-lg object-cover shadow-md border border-gray-300 cursor-pointer"
                             onClick={() => isEditing && document.getElementById(`file-input-${index}`).click()}
                         />
                         {isEditing && editedElevator.images[index] && (
                             <button
-                                className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1"
+                                className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1 shadow-md hover:bg-red-600"
                                 onClick={() => handleRemoveImage(index)}
                             >
                                 X
@@ -120,20 +146,20 @@ const View_Elevator = () => {
                 ))}
             </div>
 
-            <div className="bg-white p-6 rounded-lg shadow-md">
-                <p className="text-lg"><strong>Category:</strong> {isEditing ? <input type="text" name="category" value={editedElevator.category || ''} onChange={handleChange} className="border p-2 rounded" /> : editedElevator.category}</p>
-                <p className="text-lg"><strong>Price:</strong> {isEditing ? <input type="number" name="price" value={editedElevator.price || ''} onChange={handleChange} className="border p-2 rounded" /> : `$${editedElevator.price}`}</p>
-                <p className="text-lg"><strong>Description:</strong> {isEditing ? <textarea name="description" value={editedElevator.description || ''} onChange={handleChange} className="border p-2 rounded w-full" /> : editedElevator.description}</p>
-            </div>
-
-            <div className="mt-4 flex justify-center gap-4">
-                {isEditing ? (
-                    <button onClick={handleSave} className="px-4 py-2 bg-green-500 text-white rounded-lg">Save</button>
-                ) : (
-                    <button onClick={() => setIsEditing(true)} className="px-4 py-2 bg-blue-500 text-white rounded-lg">Edit</button>
-                )}
+            <div className="bg-white p-6 rounded-lg shadow-md w-full">
+                <p className="text-lg mb-3"><strong>Category:</strong> {isEditing ? <input type="text" name="category" value={editedElevator.category || ''} onChange={handleChange} className="border p-2 rounded w-full" /> : editedElevator.category}</p>
+                <p className="text-lg mb-3"><strong>Price:</strong> {isEditing ? <input type="number" name="price" value={editedElevator.price || ''} onChange={handleChange} className="border p-2 rounded w-full" /> : `$${editedElevator.price}`}</p>
+                <p className="text-lg mb-3"><strong>Description:</strong> {isEditing ? <textarea name="description" value={editedElevator.description || ''} onChange={handleChange} className="border p-2 rounded w-full h-24" /> : editedElevator.description}</p>
+                <div className="mt-4 flex justify-center gap-4 w-full">
+                    {isEditing ? (
+                        <button onClick={handleSave} className="px-6 py-3 bg-green-500 text-white rounded-lg shadow-md hover:bg-green-600 transition">Save</button>
+                    ) : (
+                        <button onClick={() => setIsEditing(true)} className="px-6 py-3 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 transition">Edit</button>
+                    )}
+                </div>
             </div>
         </div>
+
     );
 };
 
