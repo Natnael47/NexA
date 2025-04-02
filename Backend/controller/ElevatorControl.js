@@ -174,3 +174,66 @@ export const updateElevatorById = async (req, res) => {
       .json({ success: false, message: "Error updating elevator" });
   }
 };
+
+import path from "path";
+
+// Remove a specific image from an elevator in MongoDB
+export const removeElevatorImage = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const image = req.body.image;
+
+    console.log("Received ID:", id);
+    console.log("Image to remove:", image);
+
+    if (!image || typeof image !== "string") {
+      return res
+        .status(400)
+        .json({ success: false, message: "Invalid image name" });
+    }
+
+    const elevator = await ElevatorModel.findById(id);
+
+    if (!elevator) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Elevator not found" });
+    }
+
+    console.log("Elevator images:", elevator.images);
+
+    if (!elevator.images.includes(image)) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Image not found in elevator" });
+    }
+
+    // Remove image from array
+    const updatedImages = elevator.images.filter((img) => img !== image);
+
+    // Delete image from filesystem
+    const imagePath = path.join(process.cwd(), "uploads", image);
+    fs.access(imagePath, fs.constants.F_OK, (err) => {
+      if (!err) {
+        fs.unlink(imagePath, (unlinkErr) => {
+          if (unlinkErr)
+            console.error(`Error deleting file ${image}:`, unlinkErr);
+        });
+      } else {
+        console.error(`File not found: ${imagePath}`);
+      }
+    });
+
+    // Update database
+    await ElevatorModel.findByIdAndUpdate(
+      id,
+      { images: updatedImages },
+      { new: true }
+    );
+
+    res.json({ success: true, message: "Image removed successfully" });
+  } catch (error) {
+    console.error("Error removing image:", error);
+    res.status(500).json({ success: false, message: "Error removing image" });
+  }
+};

@@ -4,6 +4,7 @@ import {
   addElevator,
   deleteElevatorById,
   getAllElevators,
+  removeElevatorImage,
   updateElevatorById,
 } from "../controller/ElevatorControl.js";
 
@@ -28,5 +29,6 @@ ElevatorRouter.put(
   upload.array("images", 20),
   updateElevatorById
 );
+ElevatorRouter.put("/remove-image/:id", removeElevatorImage);
 
 export default ElevatorRouter;

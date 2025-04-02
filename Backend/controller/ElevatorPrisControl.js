@@ -184,3 +184,57 @@ export const updateElevatorById = async (req, res) => {
       .json({ success: false, message: "Error updating elevator" });
   }
 };
+
+// Remove a specific image from an elevator
+export const removeElevatorImage = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const image = req.body.image;
+
+    console.log("Received ID:", id);
+    console.log("Image to remove:", image);
+
+    if (!image || typeof image !== "string") {
+      return res
+        .status(400)
+        .json({ success: false, message: "Invalid image name" });
+    }
+
+    const elevator = await prisma.elevator.findUnique({
+      where: { id: parseInt(id) },
+    });
+
+    if (!elevator) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Elevator not found" });
+    }
+
+    console.log("Elevator images:", elevator.images);
+
+    if (!elevator.images.includes(image)) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Image not found in elevator" });
+    }
+
+    // Remove image from array
+    const updatedImages = elevator.images.filter((img) => img !== image);
+
+    // Delete image from filesystem
+    fs.unlink(`uploads/${image}`, (err) => {
+      if (err) console.error(`Error deleting file ${image}:`, err);
+    });
+
+    // Update database
+    await prisma.elevator.update({
+      where: { id: parseInt(id) },
+      data: { images: updatedImages },
+    });
+
+    res.json({ success: true, message: "Image removed successfully" });
+  } catch (error) {
+    console.error("Error removing image:", error);
+    res.status(500).json({ success: false, message: "Error removing image" });
+  }
+};
