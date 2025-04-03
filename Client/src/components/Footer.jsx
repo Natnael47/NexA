@@ -9,7 +9,7 @@ const Footer = () => {
             <div className='container mx-auto flex flex-col md:flex-row justify-between items-center'>
                 <div className='w-full md:w-1/3 mb-8 md:mb-0'>
                     <img src={assets.nexa_logo} alt="" className='w-[135px] h-[45px]' />
-                    <p className='text-gray-400 mt-4'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium nobis architecto consequuntur,aut debitis ullam eos harum rem veniam!</p>
+                    <p className='text-gray-400 mt-4'>NexA merges innovation with engineering to enhance both function and style. From advanced elevators to refined interiors and specialized solutions, we deliver excellence in every project.</p>
                 </div>
 
                 <div className='w-full md:w-1/5 mb-8 md:mb-0'>

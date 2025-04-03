@@ -8,7 +8,7 @@ const Sidebar = () => {
             <div className="text-gray-800 mt-5">
                 <NavLink
                     className={({ isActive }) =>
-                        `flex items-center gap-3 py-3.5 px-3 md:px-9 cursor-pointer w-full ${isActive ? 'bg-[#fcf9c6] border-r-4 border-[#FFC628]' : 'hover:bg-[#f4f4f4]'} transition-all duration-200`
+                        `flex items-center gap-3 py-3.5 px-3 md:px-9 cursor-pointer w-full ${isActive ? 'bg-blue-100 border-r-4 border-blue-800' : 'hover:bg-[#f4f4f4]'} transition-all duration-200`
                     }
                     to={'/'}
                 >
@@ -17,7 +17,7 @@ const Sidebar = () => {
                 </NavLink>
                 <NavLink
                     className={({ isActive }) =>
-                        `flex items-center gap-3 py-3.5 px-3 md:px-9 cursor-pointer w-full ${isActive ? 'bg-[#fcf9c6] border-r-4 border-[#FFC628]' : 'hover:bg-[#f4f4f4]'} transition-all duration-200`
+                        `flex items-center gap-3 py-3.5 px-3 md:px-9 cursor-pointer w-full ${isActive ? 'bg-blue-100 border-r-4 border-blue-800' : 'hover:bg-[#f4f4f4]'} transition-all duration-200`
                     }
                     to={'/new-project'}
                 >
@@ -26,7 +26,7 @@ const Sidebar = () => {
                 </NavLink>
                 <NavLink
                     className={({ isActive }) =>
-                        `flex items-center gap-3 py-3.5 px-3 md:px-9 cursor-pointer w-full ${isActive ? 'bg-[#fcf9c6] border-r-4 border-[#FFC628]' : 'hover:bg-[#f4f4f4]'} transition-all duration-200`
+                        `flex items-center gap-3 py-3.5 px-3 md:px-9 cursor-pointer w-full ${isActive ? 'bg-blue-100 border-r-4 border-blue-800' : 'hover:bg-[#f4f4f4]'} transition-all duration-200`
                     }
                     to={'/projects'}
                 >
@@ -35,7 +35,7 @@ const Sidebar = () => {
                 </NavLink>
                 <NavLink
                     className={({ isActive }) =>
-                        `flex items-center gap-3 py-3.5 px-3 md:px-9 cursor-pointer w-full ${isActive ? 'bg-[#fcf9c6] border-r-4 border-[#FFC628]' : 'hover:bg-[#f4f4f4]'} transition-all duration-200`
+                        `flex items-center gap-3 py-3.5 px-3 md:px-9 cursor-pointer w-full ${isActive ? 'bg-blue-100 border-r-4 border-blue-800' : 'hover:bg-[#f4f4f4]'} transition-all duration-200`
                     }
                     to={'/new-elevators'}
                 >
@@ -44,7 +44,7 @@ const Sidebar = () => {
                 </NavLink>
                 <NavLink
                     className={({ isActive }) =>
-                        `flex items-center gap-3 py-3.5 px-3 md:px-9 cursor-pointer w-full ${isActive ? 'bg-[#fcf9c6] border-r-4 border-[#FFC628]' : 'hover:bg-[#f4f4f4]'} transition-all duration-200`
+                        `flex items-center gap-3 py-3.5 px-3 md:px-9 cursor-pointer w-full ${isActive ? 'bg-blue-100 border-r-4 border-blue-800' : 'hover:bg-[#f4f4f4]'} transition-all duration-200`
                     }
                     to={'/elevator-list'}
                 >

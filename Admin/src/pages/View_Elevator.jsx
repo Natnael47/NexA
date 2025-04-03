@@ -87,6 +87,11 @@ const View_Elevator = () => {
         }
     };
 
+    const handleCancel = () => {
+        setEditedElevator({ ...elevator, removeImages: [] });
+        setIsEditing(false);
+    };
+
     return (
         <div className="container mx-auto p-8 bg-gray-100 min-h-screen rounded-lg shadow-lg flex flex-col items-start">
             {!isEditing && (
@@ -152,14 +157,16 @@ const View_Elevator = () => {
                 <p className="text-lg mb-3"><strong>Description:</strong> {isEditing ? <textarea name="description" value={editedElevator.description || ''} onChange={handleChange} className="border p-2 rounded w-full h-24" /> : editedElevator.description}</p>
                 <div className="mt-4 flex justify-center gap-4 w-full">
                     {isEditing ? (
-                        <button onClick={handleSave} className="px-6 py-3 bg-green-500 text-white rounded-lg shadow-md hover:bg-green-600 transition">Save</button>
+                        <>
+                            <button onClick={handleSave} className="px-6 py-3 bg-green-500 text-white rounded-lg shadow-md hover:bg-green-600 transition">Save</button>
+                            <button onClick={handleCancel} className="px-6 py-3 bg-gray-500 text-white rounded-lg shadow-md hover:bg-gray-600 transition">Cancel</button>
+                        </>
                     ) : (
                         <button onClick={() => setIsEditing(true)} className="px-6 py-3 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 transition">Edit</button>
                     )}
                 </div>
             </div>
         </div>
-
     );
 };
 
