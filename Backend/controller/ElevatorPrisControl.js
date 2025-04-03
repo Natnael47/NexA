@@ -238,3 +238,49 @@ export const removeElevatorImage = async (req, res) => {
     res.status(500).json({ success: false, message: "Error removing image" });
   }
 };
+
+export const getAdminDashboardStats = async (req, res) => {
+  try {
+    // Get total number of projects
+    const projectCount = await prisma.project.count();
+
+    // Get total number of elevators
+    const elevatorCount = await prisma.elevator.count();
+
+    // Get distinct categories for projects by using findMany and grouping by category
+    const categories = await prisma.project.findMany({
+      select: {
+        category: true,
+      },
+      distinct: ["category"],
+    });
+    const categoryCount = categories.length;
+
+    // Get all projects and count total images from the images array
+    const projects = await prisma.project.findMany({
+      select: {
+        images: true,
+      },
+    });
+    const totalImages = projects.reduce(
+      (sum, project) => sum + (project.images ? project.images.length : 0),
+      0
+    );
+
+    res.json({
+      success: true,
+      data: {
+        projectCount,
+        elevatorCount,
+        categoryCount,
+        totalImages,
+      },
+    });
+  } catch (error) {
+    console.error("Error fetching admin dashboard stats:", error);
+    res.status(500).json({
+      success: false,
+      message: "Error fetching admin dashboard stats",
+    });
+  }
+};

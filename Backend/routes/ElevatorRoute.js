@@ -3,6 +3,7 @@ import multer from "multer";
 import {
   addElevator,
   deleteElevatorById,
+  getAdminDashboardStats,
   getAllElevators,
   removeElevatorImage,
   updateElevatorById,
@@ -30,5 +31,7 @@ ElevatorRouter.put(
   updateElevatorById
 );
 ElevatorRouter.put("/remove-image/:id", removeElevatorImage);
+
+ElevatorRouter.get("/dashboard-status", getAdminDashboardStats);
 
 export default ElevatorRouter;

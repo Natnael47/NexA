@@ -237,3 +237,34 @@ export const removeElevatorImage = async (req, res) => {
     res.status(500).json({ success: false, message: "Error removing image" });
   }
 };
+
+import ProjectModel from "../models/ProjectModel.js";
+
+export const getAdminDashboardStats = async (req, res) => {
+  try {
+    const projectCount = await ProjectModel.countDocuments();
+    const elevatorCount = await ElevatorModel.countDocuments();
+    const categoryCount = await ProjectModel.distinct("category").then(
+      (categories) => categories.length
+    );
+    const totalImages = await ProjectModel.aggregate([
+      { $project: { imageCount: { $size: "$images" } } },
+    ]).then((results) => results.reduce((sum, doc) => sum + doc.imageCount, 0));
+
+    res.json({
+      success: true,
+      data: {
+        projectCount,
+        elevatorCount,
+        categoryCount,
+        totalImages,
+      },
+    });
+  } catch (error) {
+    console.error("Error fetching admin dashboard stats:", error);
+    res.status(500).json({
+      success: false,
+      message: "Error fetching admin dashboard stats",
+    });
+  }
+};
