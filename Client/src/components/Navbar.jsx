@@ -4,57 +4,62 @@ import { AppContext } from '../context/AppContext';
 
 const Navbar = () => {
     const { navigate } = useContext(AppContext);
-
     const [showMobileMenu, setShowMobileMenu] = useState(false);
+
     useEffect(() => {
-        if (showMobileMenu) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'auto';
-        }
+        document.body.style.overflow = showMobileMenu ? 'hidden' : 'auto';
         return () => {
             document.body.style.overflow = 'auto';
-        }
-    }, [setShowMobileMenu])
+        };
+    }, [showMobileMenu]);
 
     return (
-        <div className='top-0 left-0 w-full z-10 absolute'>
-            <div className='container mx-auto flex justify-between items-center py-4 px-6 md:px-20 lg:px-32 bg-transparent'>
+        <div className='top-0 left-0 w-full z-10 absolute bg-transparent'>
+            <div className='container mx-auto flex justify-between items-center py-4 px-6 md:px-20 lg:px-32'>
+                {/* Logo */}
                 <img
                     src={assets.logo}
                     alt="Logo"
-                    className='w-[200px] h-[120px] max-w-[200px] max-h-[120px] object-contain flex-shrink-0'
+                    className='w-[200px] h-[120px] max-w-[200px] max-h-[120px] object-contain cursor-pointer flex-shrink-0'
                     onClick={() => navigate('/')}
                 />
-                <ul className='hidden md:flex gap-7 text-white'>
-                    <a href="#Header" className='cursor-pointer hover:text-gray-400'>Home</a>
-                    <a href="#About" className='cursor-pointer hover:text-gray-400'>About</a>
-                    <a href="#Services" className='cursor-pointer hover:text-gray-400'>Services</a>
-                    <a href="#Contact" className='cursor-pointer hover:text-gray-400'>Contact us</a>
+
+                {/* Desktop Navigation */}
+                <ul className='hidden md:flex gap-10 text-white font-semibold text-lg'>
+                    <a href="#Header" className='hover:text-gray-300 transition'>Home</a>
+                    <a href="#About" className='hover:text-gray-300 transition'>About</a>
+                    <a href="#Services" className='hover:text-gray-300 transition'>Services</a>
+                    <a href="#Contact" className='hover:text-gray-300 transition'>Contact</a>
                 </ul>
-                <button className='hidden md:block bg-white px-8 py-2 rounded-full'>Sign up</button>
+
+                {/* Mobile Menu Icon */}
                 <img
                     src={assets.menu_icon}
                     onClick={() => setShowMobileMenu(true)}
-                    className='md:hidden w-7 cursor-pointer'
+                    className='md:hidden w-8 cursor-pointer'
                     alt="Menu"
                 />
             </div>
 
-            {/*---------------mobile menu --------------------*/}
-            <div className={`md:hidden ${showMobileMenu ? 'fixed w-full' : 'h-0 w-0'}  right-0 top-0 bottom-0 overflow-hidden bg-white transition-all`}>
-                <div className='flex justify-end p-6 cursor-pointer'>
-                    <img src={assets.cross_icon} onClick={() => setShowMobileMenu(false)} className='w-6' alt="" />
+            {/* Mobile Menu */}
+            <div className={`fixed top-0 right-0 h-screen w-3/4 bg-white/30 backdrop-blur-lg shadow-lg transform ${showMobileMenu ? 'translate-x-0' : 'translate-x-full'} transition-transform`}>
+                <div className='flex justify-end p-5'>
+                    <img
+                        src={assets.cross_icon}
+                        onClick={() => setShowMobileMenu(false)}
+                        className='w-6 cursor-pointer'
+                        alt="Close"
+                    />
                 </div>
-                <ul className='flex flex-col items-center gap-2 mt-5 px-5 text-lg font-medium'>
-                    <a href="#Header" className='px-4 py-2 rounded-full inline-block' onClick={() => setShowMobileMenu(false)}>Home</a>
-                    <a href="#About" className='px-4 py-2 rounded-full inline-block' onClick={() => setShowMobileMenu(false)}>About Us</a>
-                    <a href="#Services" className='px-4 py-2 rounded-full inline-block' onClick={() => setShowMobileMenu(false)}>Services</a>
-                    <a href="#Contact" className='px-4 py-2 rounded-full inline-block' onClick={() => setShowMobileMenu(false)}>Contact Us</a>
+                <ul className='flex flex-col items-center gap-6 mt-8 text-xl font-medium'>
+                    <a href="#Header" className='px-6 py-2 rounded-lg hover:bg-gray-200 w-full text-center' onClick={() => setShowMobileMenu(false)}>Home</a>
+                    <a href="#About" className='px-6 py-2 rounded-lg hover:bg-gray-200 w-full text-center' onClick={() => setShowMobileMenu(false)}>About</a>
+                    <a href="#Services" className='px-6 py-2 rounded-lg hover:bg-gray-200 w-full text-center' onClick={() => setShowMobileMenu(false)}>Services</a>
+                    <a href="#Contact" className='px-6 py-2 rounded-lg hover:bg-gray-200 w-full text-center' onClick={() => setShowMobileMenu(false)}>Contact</a>
                 </ul>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Navbar
+export default Navbar;

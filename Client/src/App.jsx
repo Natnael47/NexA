@@ -8,6 +8,7 @@ import Contact from './pages/Contact';
 import Elevators from './pages/Elevators';
 import Home from './pages/Home';
 import HVAC from './pages/HVAC';
+import Privacy_Policy from './pages/Privacy_Policy';
 import Product from './pages/Product';
 import Software from './pages/Software';
 import Tourism from './pages/Tourism';
@@ -30,6 +31,8 @@ const App = () => {
           <Route path='/contact-us' element={<Contact />} />
           <Route path='/elevators' element={<Elevators />} />
           <Route path='/product/:productId' element={<Product />} />
+          <Route path='/privacy' element={<Privacy_Policy />} />
+
 
           <Route path='/hvac' element={<HVAC />} />
           <Route path='/software' element={<Software />} />

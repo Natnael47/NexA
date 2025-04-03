@@ -36,7 +36,7 @@ const Contact = () => {
                         <label className="block text-left mb-2 text-sm font-medium">Your Message</label>
                         <textarea className="w-full border border-gray-300 rounded py-3 px-4 h-48 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500" name="Message" placeholder="Your Message" required />
                     </div>
-                    <button className="bg-blue-600 text-white py-3 px-12 cursor-pointer rounded hover:bg-blue-800 transition-all w-full md:w-auto">Send Message</button>
+                    <button className="bg-blue-600 text-white py-3 px-12 cursor-pointer rounded hover:bg-blue-800 transition-all shadow-lg w-full md:w-auto">Send Message</button>
                 </form>
             </motion.div>
 

@@ -18,7 +18,7 @@ const Footer = () => {
                         <a href="" onClick={() => navigate('/')} className='hover:text-white'>Home</a>
                         <a href="" onClick={() => navigate('/about')} className='hover:text-white'>About Us</a>
                         <a href="" onClick={() => navigate('/contact-us')} className='hover:text-white'>Contact Us</a>
-                        <a href="#" className='hover:text-white'>Privacy Policy</a>
+                        <a href="" onClick={() => navigate('/privacy')} className='hover:text-white'>Privacy Policy</a>
                     </ul>
                 </div>
 

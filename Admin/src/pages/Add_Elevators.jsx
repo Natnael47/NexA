@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 import { backendUrl } from "../App";
 import { assets } from "../assets/assets";
 
@@ -46,7 +47,7 @@ const Add_Elevators = () => {
         try {
             const response = await axios.post(`${backendUrl}/api/elevator/add`, data);
             if (response.data.success) {
-                alert("Elevator added successfully!");
+                toast.success("Elevator Added successfully");
                 setFormData({
                     title: "",
                     description: "",
@@ -55,7 +56,7 @@ const Add_Elevators = () => {
                     imagePreviews: Array(4).fill(null),
                 });
             } else {
-                alert("Error adding elevator: " + response.data.message);
+                toast.error("Error adding elevator: " + response.data.message);
             }
         } catch (error) {
             console.error("Error submitting form:", error);
