@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { Image, Layers, ListOrdered, PackageSearch } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
+import { backendUrl } from '../App';
 
 const Dashboard = () => {
     const [dashboardData, setDashboardData] = useState({
@@ -13,7 +14,7 @@ const Dashboard = () => {
     useEffect(() => {
         const fetchDashboardData = async () => {
             try {
-                const response = await axios.get("http://localhost:4000/api/elevator/dashboard-status");
+                const response = await axios.get(backendUrl + "/api/elevator/dashboard-status");
                 setDashboardData(response.data.data);
                 console.log(response.data.data);
 
