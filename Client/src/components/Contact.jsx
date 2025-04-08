@@ -1,8 +1,32 @@
 import { motion } from "framer-motion";
 import { Mail, MapPin, Phone } from 'lucide-react';
-import React from 'react';
+import React, { useState } from 'react';
 
 const Contact = () => {
+    const [result, setResult] = useState("");
+
+    const onSubmit = async (event) => {
+        event.preventDefault();
+        setResult("Sending....");
+        const formData = new FormData(event.target);
+        formData.append("access_key", "502f6be7-fd08-43db-b36e-c374f5726fa6");
+
+        const response = await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            body: formData
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            setResult("Form Submitted Successfully");
+            event.target.reset();
+        } else {
+            console.log("Error", data);
+            setResult(data.message);
+        }
+    };
+
     return (
         <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -21,22 +45,25 @@ const Contact = () => {
                 viewport={{ once: true, amount: 0.3 }}
                 className="max-w-6xl mx-auto bg-white rounded-2xl p-6"
             >
-                <form className="text-gray-600">
+                <form className="text-gray-600" onSubmit={onSubmit}>
                     <div className="flex flex-wrap -mx-4">
                         <div className="w-full md:w-1/2 px-4 mb-4 md:mb-0">
                             <label className="block text-left mb-2 text-sm font-medium">Your Name</label>
-                            <input className="w-full border border-gray-300 rounded py-3 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500" name="Name" type="text" placeholder="Your Name" required />
+                            <input className="w-full border border-gray-300 rounded py-3 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500" name="name" type="text" placeholder="Your Name" required />
                         </div>
                         <div className="w-full md:w-1/2 px-4">
                             <label className="block text-left mb-2 text-sm font-medium">Your Email</label>
-                            <input className="w-full border border-gray-300 rounded py-3 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500" name="Email" type="email" placeholder="Your Email" required />
+                            <input className="w-full border border-gray-300 rounded py-3 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500" name="email" type="email" placeholder="Your Email" required />
                         </div>
                     </div>
                     <div className="my-6">
                         <label className="block text-left mb-2 text-sm font-medium">Your Message</label>
-                        <textarea className="w-full border border-gray-300 rounded py-3 px-4 h-48 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500" name="Message" placeholder="Your Message" required />
+                        <textarea className="w-full border border-gray-300 rounded py-3 px-4 h-48 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500" name="message" placeholder="Your Message" required />
                     </div>
-                    <button className="bg-blue-600 text-white py-3 px-12 cursor-pointer rounded hover:bg-blue-800 transition-all shadow-lg w-full md:w-auto">Send Message</button>
+                    <button className="bg-blue-600 text-white py-3 px-12 cursor-pointer rounded hover:bg-blue-800 transition-all shadow-lg w-full md:w-auto" type="submit">
+                        Send Message
+                    </button>
+                    <p className="mt-4 text-sm text-center">{result}</p>
                 </form>
             </motion.div>
 
