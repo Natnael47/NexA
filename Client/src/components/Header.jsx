@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { assets } from "../assets/assets";
 import { AppContext } from "../context/AppContext";
 import Navbar from "./Navbar";
@@ -64,13 +65,8 @@ const Header = () => {
                     transition={{ duration: 1, delay: 0.5 }}
                     className="space-x-6 mt-16"
                 >
-                    <a
-                        href=""
-                        className="bg-white text-black font-medium py-3 rounded px-8 transition hover:bg-gray-200 shadow-lg"
-                        onClick={() => navigate('/elevators')}
-                    >
-                        Products
-                    </a>
+
+                    <Link to={'/elevators'} className="bg-white text-black font-medium py-3 rounded px-8 transition hover:bg-gray-200 shadow-lg">Products </Link>
                     <a
                         href="#Contact"
                         className="bg-blue-500 text-white font-medium py-3 rounded px-8 transition hover:bg-blue-600 shadow-lg"
