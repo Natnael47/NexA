@@ -1,6 +1,6 @@
-import { Mail, MapPin, Phone } from 'lucide-react';
+import { ArrowLeft, ChevronRight, Mail, MapPin, Phone } from 'lucide-react';
 import React, { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { backendUrl } from '../App';
 import { AppContext } from '../context/AppContext';
 
@@ -9,10 +9,20 @@ const Product = () => {
     const [productData, setProductData] = useState(null);
     const [mainImage, setMainImage] = useState('');
     const { fetchElevatorList, ElevatorList } = useContext(AppContext);
+    const navigate = useNavigate();
+    const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
         fetchElevatorList(); // Ensure list is fetched
-    }, []);
+        // Detect if the user is on mobile for the back button
+        const checkMobileView = () => setIsMobile(window.innerWidth <= 768);
+        checkMobileView();
+        window.addEventListener('resize', checkMobileView);
+
+        return () => {
+            window.removeEventListener('resize', checkMobileView);
+        };
+    }, [fetchElevatorList]);
 
     useEffect(() => {
         if (ElevatorList.length > 0) {
@@ -31,6 +41,26 @@ const Product = () => {
 
     return productData ? (
         <div className='container mx-auto py-4 pt-10 px-6 md:px-20 lg:px-32 my-20 w-full overflow-hidden'>
+            {/* Breadcrumb for desktop */}
+            {!isMobile && (
+                <div className="flex items-center text-lg mb-4">
+                    <Link to="/elevators" className="text-blue-500 hover:text-blue-700">Elevators</Link>
+                    <span className="mx-2"><ChevronRight /></span>
+                    <span className="text-gray-600">{productData.title}</span>
+                </div>
+            )}
+
+            {/* Mobile Back Arrow Icon */}
+            {isMobile && (
+                <div className="flex items-center mb-4">
+                    <ArrowLeft
+                        size={24}
+                        className="cursor-pointer text-blue-500"
+                        onClick={() => navigate(-1)} // Go back to the previous page
+                    />
+                </div>
+            )}
+
             <div className='flex gap-12 sm:gap-12 flex-col sm:flex-row'>
                 {/* Product images */}
                 <div className='flex-1 flex flex-col-reverse gap-3 sm:flex-row'>
