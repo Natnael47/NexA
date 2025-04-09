@@ -17,9 +17,6 @@ import googleMap from "./googlemap.png";
 import header_img from "./header_img.png";
 import hvacImage from "./hvac.png";
 import left_arrow from "./left_arrow.svg";
-import nexa_logo from "./Logo-1.png";
-import logo from "./logo23.png";
-import logo_dark from "./logo_dark.svg";
 import menu_icon from "./menu_icon.svg";
 import profile_img_3 from "./photo_Abdu.jpg";
 import profile_img_2 from "./photo_Mensur.jpg";
@@ -30,6 +27,10 @@ import project_img_3 from "./project_img_3.jpg";
 import project_img_4 from "./project_img_4.jpg";
 import project_img_5 from "./project_img_5.jpg";
 import project_img_6 from "./project_img_6.jpg";
+import logo, {
+  default as logo_dark,
+  default as nexa_logo,
+} from "./ps-nexa-logo-w.png";
 import right_arrow from "./right_arrow.svg";
 import star_icon from "./star_icon.svg";
 import tunnelImage from "./tunnel.png";
