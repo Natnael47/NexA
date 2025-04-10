@@ -1,34 +1,72 @@
 import fs from "fs";
+import path from "path";
+import sharp from "sharp";
 import ElevatorModel from "../models/EelevatorModel.js";
 
-// Add a new elevator entry
+// Utility to safely delete files (avoids Windows/OneDrive issues)
+const safeDelete = async (filePath) => {
+  try {
+    await fs.promises.unlink(filePath);
+    console.log(`Deleted: ${filePath}`);
+  } catch (err) {
+    console.warn(`Could not delete ${filePath}:`, err.message);
+  }
+};
+
 export const addElevator = async (req, res) => {
   try {
     const { title, description, category } = req.body;
 
-    // Check if an elevator with the same title exists
+    // Unique title check
     const existingElevator = await ElevatorModel.findOne({ title });
     if (existingElevator) {
-      return res
-        .status(400)
-        .json({ success: false, message: "Elevator title must be unique." });
+      return res.status(400).json({
+        success: false,
+        message: "Elevator title must be unique.",
+      });
     }
 
-    const images = req.files ? req.files.map((file) => file.filename) : [];
+    const uploadedFiles = req.files || [];
 
-    if (images.length < 1 || images.length > 20) {
+    if (uploadedFiles.length < 1 || uploadedFiles.length > 20) {
       return res.status(400).json({
         success: false,
         message: "You must upload between 1 and 20 images.",
       });
     }
 
+    const webpImages = [];
+
+    for (const file of uploadedFiles) {
+      const inputPath = file.path;
+      const outputFilename = `${path.parse(file.filename).name}.webp`;
+      const outputPath = path.join("uploads", outputFilename);
+
+      try {
+        // Convert to .webp
+        await sharp(inputPath)
+          .resize({ width: 1920 }) // Optional resize
+          .webp({ quality: 75 })
+          .toFile(outputPath);
+
+        // Delay to avoid OneDrive locks (Windows fix)
+        await new Promise((res) => setTimeout(res, 100));
+
+        // Safely delete original file
+        await safeDelete(inputPath);
+
+        webpImages.push(outputFilename);
+      } catch (err) {
+        console.error(`Failed to process ${file.filename}:`, err);
+      }
+    }
+
     const newElevator = new ElevatorModel({
       title,
       description,
-      images,
+      images: webpImages,
       category,
-      price: 0.0, // Default price
+      price: 0.0,
     });
 
     await newElevator.save();
@@ -40,13 +78,14 @@ export const addElevator = async (req, res) => {
     });
   } catch (error) {
     console.error("Error adding elevator:", error);
+
+    // Cleanup if something breaks
     if (req.files) {
-      req.files.forEach((file) => {
-        fs.unlink(`uploads/${file.filename}`, (err) => {
-          if (err) console.error("Error deleting file:", err);
-        });
-      });
+      for (const file of req.files) {
+        await safeDelete(file.path);
+      }
     }
+
     res.status(500).json({ success: false, message: "Error adding elevator" });
   }
 };
@@ -174,8 +213,6 @@ export const updateElevatorById = async (req, res) => {
       .json({ success: false, message: "Error updating elevator" });
   }
 };
-
-import path from "path";
 
 // Remove a specific image from an elevator in MongoDB
 export const removeElevatorImage = async (req, res) => {

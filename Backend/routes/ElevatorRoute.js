@@ -1,5 +1,4 @@
 import express from "express";
-import multer from "multer";
 import {
   addElevator,
   deleteElevatorById,
@@ -8,17 +7,7 @@ import {
   removeElevatorImage,
   updateElevatorById,
 } from "../controller/ElevatorControl.js";
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "uploads/");
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + "-" + file.originalname);
-  },
-});
-
-const upload = multer({ storage });
+import upload from "../middleWare/multerConfig.js";
 
 const ElevatorRouter = express.Router();
 
@@ -31,7 +20,6 @@ ElevatorRouter.put(
   updateElevatorById
 );
 ElevatorRouter.put("/remove-image/:id", removeElevatorImage);
-
 ElevatorRouter.get("/dashboard-status", getAdminDashboardStats);
 
 export default ElevatorRouter;
