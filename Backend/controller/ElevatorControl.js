@@ -1,7 +1,14 @@
 import fs from "fs";
+import path from "path";
+import sharp from "sharp";
 import ElevatorModel from "../models/EelevatorModel.js";
 
-// Add a new elevator entry
+// Ensure uploads folder exists
+const uploadsDir = path.join("uploads");
+if (!fs.existsSync(uploadsDir)) {
+  fs.mkdirSync(uploadsDir, { recursive: true });
+}
+
 export const addElevator = async (req, res) => {
   try {
     const { title, description, category } = req.body;
@@ -14,13 +21,23 @@ export const addElevator = async (req, res) => {
         .json({ success: false, message: "Elevator title must be unique." });
     }
 
-    const images = req.files ? req.files.map((file) => file.filename) : [];
-
-    if (images.length < 1 || images.length > 20) {
+    if (!req.files || req.files.length < 1 || req.files.length > 20) {
       return res.status(400).json({
         success: false,
         message: "You must upload between 1 and 20 images.",
       });
+    }
+
+    // Convert each image buffer to .webp and save to disk
+    const images = [];
+
+    for (const file of req.files) {
+      const filename = `${Date.now()}-${file.originalname.split(".")[0]}.webp`;
+      const filepath = path.join("uploads", filename);
+
+      await sharp(file.buffer).webp({ quality: 80 }).toFile(filepath);
+
+      images.push(filename);
     }
 
     const newElevator = new ElevatorModel({
@@ -40,13 +57,7 @@ export const addElevator = async (req, res) => {
     });
   } catch (error) {
     console.error("Error adding elevator:", error);
-    if (req.files) {
-      req.files.forEach((file) => {
-        fs.unlink(`uploads/${file.filename}`, (err) => {
-          if (err) console.error("Error deleting file:", err);
-        });
-      });
-    }
+
     res.status(500).json({ success: false, message: "Error adding elevator" });
   }
 };
@@ -98,7 +109,7 @@ export const updateElevatorById = async (req, res) => {
   try {
     const { id } = req.params;
     const formattedBody = Object.keys(req.body).reduce((acc, key) => {
-      acc[key.trim()] = req.body[key]; // Trim keys to remove extra spaces
+      acc[key.trim()] = req.body[key];
       return acc;
     }, {});
 
@@ -115,16 +126,42 @@ export const updateElevatorById = async (req, res) => {
     if (title && title !== elevator.title) {
       const existingElevator = await ElevatorModel.findOne({ title });
       if (existingElevator) {
-        return res
-          .status(400)
-          .json({ success: false, message: "Elevator title must be unique." });
+        return res.status(400).json({
+          success: false,
+          message: "Elevator title must be unique.",
+        });
       }
     }
 
+    // Remove selected images
     let updatedImages = elevator.images.filter(
       (img) => !(removeImages || []).includes(img)
     );
-    const newImages = req.files ? req.files.map((file) => file.filename) : [];
+
+    if (removeImages) {
+      removeImages.forEach((img) => {
+        const filePath = path.join("uploads", img);
+        fs.unlink(filePath, (err) => {
+          if (err) console.error(`Error deleting file ${img}:`, err);
+        });
+      });
+    }
+
+    // Convert newly uploaded images to .webp
+    const newImages = [];
+
+    if (req.files && req.files.length > 0) {
+      for (const file of req.files) {
+        const filename = `${Date.now()}-${
+          file.originalname.split(".")[0]
+        }.webp`;
+        const filepath = path.join("uploads", filename);
+
+        await sharp(file.buffer).webp({ quality: 80 }).toFile(filepath);
+        newImages.push(filename);
+      }
+    }
+
     updatedImages = [...updatedImages, ...newImages];
 
     if (updatedImages.length < 1 || updatedImages.length > 20) {
@@ -134,15 +171,6 @@ export const updateElevatorById = async (req, res) => {
       });
     }
 
-    if (removeImages) {
-      removeImages.forEach((img) => {
-        fs.unlink(`uploads/${img}`, (err) => {
-          if (err) console.error(`Error deleting file ${img}:`, err);
-        });
-      });
-    }
-
-    // Ensure all fields are updated, even if they are not present in the request
     const updatedElevator = await ElevatorModel.findByIdAndUpdate(
       id,
       {
@@ -150,7 +178,7 @@ export const updateElevatorById = async (req, res) => {
         description: description || elevator.description,
         category: category || elevator.category,
         images: updatedImages,
-        price: price || elevator.price || 0.0, // Default to the existing price if not provided
+        price: price || elevator.price || 0.0,
       },
       { new: true }
     );
@@ -162,13 +190,6 @@ export const updateElevatorById = async (req, res) => {
     });
   } catch (error) {
     console.error("Error updating elevator:", error);
-    if (req.files) {
-      req.files.forEach((file) => {
-        fs.unlink(`uploads/${file.filename}`, (err) => {
-          if (err) console.error("Error deleting file:", err);
-        });
-      });
-    }
     res
       .status(500)
       .json({ success: false, message: "Error updating elevator" });

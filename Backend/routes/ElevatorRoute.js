@@ -9,15 +9,8 @@ import {
   updateElevatorById,
 } from "../controller/ElevatorControl.js";
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "uploads/");
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + "-" + file.originalname);
-  },
-});
-
+// Use memory storage to handle image buffers before saving to disk
+const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
 const ElevatorRouter = express.Router();
@@ -31,7 +24,6 @@ ElevatorRouter.put(
   updateElevatorById
 );
 ElevatorRouter.put("/remove-image/:id", removeElevatorImage);
-
 ElevatorRouter.get("/dashboard-status", getAdminDashboardStats);
 
 export default ElevatorRouter;
