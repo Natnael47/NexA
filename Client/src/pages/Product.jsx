@@ -29,10 +29,14 @@ const Product = () => {
             const product = ElevatorList.find(item => item._id === productId);
             if (product) {
                 setProductData(product);
-                setMainImage(product.images?.[0] ? `${backendUrl}/images/${product.images[0]}` : '');
+                // Only set the main image if not already manually set
+                if (!mainImage) {
+                    setMainImage(product.images?.[0] ? `${backendUrl}/images/${product.images[0]}` : '');
+                }
             }
         }
     }, [productId, ElevatorList]);
+
 
     // Function to get thumbnails excluding the main image
     const getThumbnails = () => {
