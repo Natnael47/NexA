@@ -1,9 +1,15 @@
 import { PrismaClient } from "@prisma/client";
 import fs from "fs";
+import path from "path";
+import sharp from "sharp";
 
 const prisma = new PrismaClient();
 
-// Add a new elevator entry
+const uploadsDir = path.join("uploads");
+if (!fs.existsSync(uploadsDir)) {
+  fs.mkdirSync(uploadsDir, { recursive: true });
+}
+
 export const addElevator = async (req, res) => {
   try {
     const { title, description, category } = req.body;
@@ -19,13 +25,23 @@ export const addElevator = async (req, res) => {
         .json({ success: false, message: "Elevator title must be unique." });
     }
 
-    const images = req.files ? req.files.map((file) => file.filename) : [];
-
-    if (images.length < 1 || images.length > 20) {
+    if (!req.files || req.files.length < 1 || req.files.length > 20) {
       return res.status(400).json({
         success: false,
         message: "You must upload between 1 and 20 images.",
       });
+    }
+
+    const images = [];
+
+    // Convert each image to .webp and save to disk
+    for (const file of req.files) {
+      const filename = `${Date.now()}-${file.originalname.split(".")[0]}.webp`;
+      const filepath = path.join("uploads", filename);
+
+      await sharp(file.buffer).webp({ quality: 80 }).toFile(filepath);
+
+      images.push(filename);
     }
 
     const newElevator = await prisma.elevator.create({
@@ -53,6 +69,108 @@ export const addElevator = async (req, res) => {
       });
     }
     res.status(500).json({ success: false, message: "Error adding elevator" });
+  }
+};
+
+// Update an elevator by ID
+export const updateElevatorById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const formattedBody = Object.keys(req.body).reduce((acc, key) => {
+      acc[key.trim()] = req.body[key]; // Trim keys to remove extra spaces
+      return acc;
+    }, {});
+
+    const { title, description, category, price, removeImages } = formattedBody;
+
+    const elevator = await prisma.elevator.findUnique({
+      where: { id: parseInt(id) },
+    });
+    if (!elevator) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Elevator not found" });
+    }
+
+    // Check if new title already exists in another elevator
+    if (title && title !== elevator.title) {
+      const existingElevator = await prisma.elevator.findUnique({
+        where: { title },
+      });
+      if (existingElevator) {
+        return res
+          .status(400)
+          .json({ success: false, message: "Elevator title must be unique." });
+      }
+    }
+
+    // Remove selected images
+    let updatedImages = elevator.images.filter(
+      (img) => !(removeImages || []).includes(img)
+    );
+
+    // Delete the images from the filesystem
+    if (removeImages) {
+      removeImages.forEach((img) => {
+        const filePath = path.join("uploads", img);
+        fs.unlink(filePath, (err) => {
+          if (err) console.error(`Error deleting file ${img}:`, err);
+        });
+      });
+    }
+
+    // Convert newly uploaded images to .webp and add them to the list
+    const newImages = [];
+    if (req.files && req.files.length > 0) {
+      for (const file of req.files) {
+        const filename = `${Date.now()}-${
+          file.originalname.split(".")[0]
+        }.webp`;
+        const filepath = path.join("uploads", filename);
+
+        await sharp(file.buffer).webp({ quality: 80 }).toFile(filepath);
+        newImages.push(filename);
+      }
+    }
+
+    updatedImages = [...updatedImages, ...newImages];
+
+    if (updatedImages.length < 1 || updatedImages.length > 20) {
+      return res.status(400).json({
+        success: false,
+        message: "Total images must be between 1 and 20.",
+      });
+    }
+
+    // Update the elevator record in the database
+    const updatedElevator = await prisma.elevator.update({
+      where: { id: parseInt(id) },
+      data: {
+        title: title || elevator.title,
+        description: description || elevator.description,
+        category: category || elevator.category,
+        images: updatedImages,
+        price: price ? parseFloat(price) : elevator.price,
+      },
+    });
+
+    res.json({
+      success: true,
+      message: "Elevator updated successfully",
+      data: updatedElevator,
+    });
+  } catch (error) {
+    console.error("Error updating elevator:", error);
+    if (req.files) {
+      req.files.forEach((file) => {
+        fs.unlink(`uploads/${file.filename}`, (err) => {
+          if (err) console.error("Error deleting file:", err);
+        });
+      });
+    }
+    res
+      .status(500)
+      .json({ success: false, message: "Error updating elevator" });
   }
 };
 
@@ -97,91 +215,6 @@ export const deleteElevatorById = async (req, res) => {
     res
       .status(500)
       .json({ success: false, message: "Error deleting elevator" });
-  }
-};
-
-// Update an elevator by ID
-export const updateElevatorById = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const formattedBody = Object.keys(req.body).reduce((acc, key) => {
-      acc[key.trim()] = req.body[key]; // Trim keys to remove extra spaces
-      return acc;
-    }, {});
-
-    const { title, description, category, price, removeImages } = formattedBody;
-
-    const elevator = await prisma.elevator.findUnique({
-      where: { id: parseInt(id) },
-    });
-    if (!elevator) {
-      return res
-        .status(404)
-        .json({ success: false, message: "Elevator not found" });
-    }
-
-    // Check if new title already exists in another elevator
-    if (title && title !== elevator.title) {
-      const existingElevator = await prisma.elevator.findUnique({
-        where: { title },
-      });
-      if (existingElevator) {
-        return res
-          .status(400)
-          .json({ success: false, message: "Elevator title must be unique." });
-      }
-    }
-
-    let updatedImages = elevator.images.filter(
-      (img) => !(removeImages || []).includes(img)
-    );
-    const newImages = req.files ? req.files.map((file) => file.filename) : [];
-    updatedImages = [...updatedImages, ...newImages];
-
-    if (updatedImages.length < 1 || updatedImages.length > 20) {
-      return res.status(400).json({
-        success: false,
-        message: "Total images must be between 1 and 20.",
-      });
-    }
-
-    if (removeImages) {
-      removeImages.forEach((img) => {
-        fs.unlink(`uploads/${img}`, (err) => {
-          if (err) console.error(`Error deleting file ${img}:`, err);
-        });
-      });
-    }
-
-    // Ensure all fields are updated, even if they are not present in the request
-    const updatedElevator = await prisma.elevator.update({
-      where: { id: parseInt(id) },
-      data: {
-        title: title || elevator.title,
-        description: description || elevator.description,
-        category: category || elevator.category,
-        images: updatedImages,
-        price: price ? parseFloat(price) : elevator.price,
-      },
-    });
-
-    res.json({
-      success: true,
-      message: "Elevator updated successfully",
-      data: updatedElevator,
-    });
-  } catch (error) {
-    console.error("Error updating elevator:", error);
-    if (req.files) {
-      req.files.forEach((file) => {
-        fs.unlink(`uploads/${file.filename}`, (err) => {
-          if (err) console.error("Error deleting file:", err);
-        });
-      });
-    }
-    res
-      .status(500)
-      .json({ success: false, message: "Error updating elevator" });
   }
 };
 
