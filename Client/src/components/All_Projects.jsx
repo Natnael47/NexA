@@ -6,6 +6,15 @@ import constructionImg from "../assets/construction.jpg";
 import elevatorImage from "../assets/elevtor.png";
 import tunnelImage from "../assets/tunnel.png";
 
+const services = [
+    { name: "Construction", img: constructionImg, link: "/construction" },
+    { name: "Elevators", img: elevatorImage, link: "/elevators" },
+    { name: "Tunnels", img: tunnelImage, link: "/tunnels" },
+    { name: "HVAC", img: assets.hvacImage, link: "/hvac" },
+    { name: "Software", img: assets.computerImage, link: "/software" },
+    { name: "Tourism", img: assets.touristImage, link: "/tourism" },
+];
+
 const serviceVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: (index) => ({
@@ -33,150 +42,32 @@ const All_Projects = () => {
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {/* Each block wrapped in a Link now */}
-                <Link to="/construction">
-                    <motion.div
-                        custom={0}
-                        initial="hidden"
-                        whileInView="visible"
-                        variants={serviceVariants}
-                        viewport={{ once: true, amount: 0.2 }}
-                        className="cursor-pointer"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                        <motion.img
-                            src={constructionImg}
-                            alt="Construction"
-                            className="w-full h-64 object-cover transition-transform rounded-lg duration-300"
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.6, delay: 0 * 0.2 }}
-                            viewport={{ once: true }}
-                        />
-                        <h2 className="mt-2 text-xl font-semibold">Construction</h2>
-                    </motion.div>
-                </Link>
+                {services.map((service, index) => (
+                    <Link to={service.link} onClick={() => scrollTo(0, 0)} key={index}>
+                        <motion.div
+                            custom={index}
+                            initial="hidden"
+                            whileInView="visible"
+                            variants={serviceVariants}
+                            viewport={{ once: true, amount: 0.2 }}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.98 }}
+                            className="relative group overflow-hidden rounded-xl shadow-lg cursor-pointer"
+                        >
+                            <img
+                                src={service.img}
+                                alt={service.name}
+                                className="w-full h-64 object-cover transition duration-500 group-hover:blur-sm"
+                            />
+                            <div className="absolute inset-0 flex items-center justify-center">
+                                <h2 className="text-white text-4xl font-bold bg-black/40 px-6 py-3 rounded-lg transition-all duration-300 group-hover:text-5xl group-hover:bg-black/65 group-hover:scale-105">
+                                    {service.name}
+                                </h2>
+                            </div>
+                        </motion.div>
+                    </Link>
 
-                <Link to="/elevators">
-                    <motion.div
-                        custom={1}
-                        initial="hidden"
-                        whileInView="visible"
-                        variants={serviceVariants}
-                        viewport={{ once: true, amount: 0.2 }}
-                        className="cursor-pointer"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                        <motion.img
-                            src={elevatorImage}
-                            alt="Elevators"
-                            className="w-full h-64 object-cover transition-transform rounded-lg duration-300"
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.6, delay: 1 * 0.2 }}
-                            viewport={{ once: true }}
-                        />
-                        <h2 className="mt-2 text-xl font-semibold">Elevators</h2>
-                    </motion.div>
-                </Link>
-
-                <Link to="/tunnels">
-                    <motion.div
-                        custom={2}
-                        initial="hidden"
-                        whileInView="visible"
-                        variants={serviceVariants}
-                        viewport={{ once: true, amount: 0.2 }}
-                        className="cursor-pointer"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                        <motion.img
-                            src={tunnelImage}
-                            alt="Tunnels"
-                            className="w-full h-64 object-cover transition-transform rounded-lg duration-300"
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.6, delay: 2 * 0.2 }}
-                            viewport={{ once: true }}
-                        />
-                        <h2 className="mt-2 text-xl font-semibold">Tunnels</h2>
-                    </motion.div>
-                </Link>
-
-                <Link to="/hvac">
-                    <motion.div
-                        custom={3}
-                        initial="hidden"
-                        whileInView="visible"
-                        variants={serviceVariants}
-                        viewport={{ once: true, amount: 0.2 }}
-                        className="cursor-pointer"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                        <motion.img
-                            src={assets.hvacImage}
-                            alt="HVAC"
-                            className="w-full h-64 object-cover transition-transform rounded-lg duration-300"
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.6, delay: 3 * 0.2 }}
-                            viewport={{ once: true }}
-                        />
-                        <h2 className="mt-2 text-xl font-semibold">HVAC</h2>
-                    </motion.div>
-                </Link>
-
-                <Link to="/software">
-                    <motion.div
-                        custom={4}
-                        initial="hidden"
-                        whileInView="visible"
-                        variants={serviceVariants}
-                        viewport={{ once: true, amount: 0.2 }}
-                        className="cursor-pointer"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                        <motion.img
-                            src={assets.computerImage}
-                            alt="Software"
-                            className="w-full h-64 object-cover transition-transform rounded-lg duration-300"
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.6, delay: 4 * 0.2 }}
-                            viewport={{ once: true }}
-                        />
-                        <h2 className="mt-2 text-xl font-semibold">Software</h2>
-                    </motion.div>
-                </Link>
-
-                <Link to="/tourism">
-                    <motion.div
-                        custom={5}
-                        initial="hidden"
-                        whileInView="visible"
-                        variants={serviceVariants}
-                        viewport={{ once: true, amount: 0.2 }}
-                        className="cursor-pointer"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                        <motion.img
-                            src={assets.touristImage}
-                            alt="Tourism"
-                            className="w-full h-64 object-cover transition-transform rounded-lg duration-300"
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.6, delay: 5 * 0.2 }}
-                            viewport={{ once: true }}
-                        />
-                        <h2 className="mt-2 text-xl font-semibold">Tourism</h2>
-                    </motion.div>
-                </Link>
+                ))}
             </div>
         </motion.div>
     );

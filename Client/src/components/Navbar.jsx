@@ -24,9 +24,9 @@ const Navbar = () => {
                     onClick={() => navigate('/')}
                 >
                     <img
-                        src={assets.logo}
+                        src={assets.C_logo}
                         alt="Logo"
-                        className='w-[135px] h-[45px] object-contain'
+                        className='w-[110px] h-[110px] object-contain'
                     />
                 </div>
 
@@ -36,7 +36,7 @@ const Navbar = () => {
                         <li key={item}>
                             <a
                                 href={`#${item}`}
-                                className='px-5 py-2 rounded-full transition-all duration-300 hover:bg-blue-500 hover:text-white hover:shadow-md'
+                                className='px-5 py-2 rounded-full transition-all duration-300 hover:bg-blue-800/80 hover:text-white hover:shadow-md'
                             >
                                 {item}
                             </a>

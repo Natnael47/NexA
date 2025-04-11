@@ -1,9 +1,11 @@
 import { motion } from "framer-motion";
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { assets } from "../assets/assets";
 import { AppContext } from "../context/AppContext";
 
 const About = () => {
+    const MotionLink = motion(Link);
     const { navigate } = useContext(AppContext);
     return (
         <motion.div
@@ -69,14 +71,15 @@ const About = () => {
                         Nexa Consultancy Engineering Solutions is a dynamic Ethio-Turkish company committed to delivering top-tier engineering services. With expertise spanning elevators, finishing, interior design, and a wide range of engineering solutions, we bring innovative, high-quality, and cost-effective services to our clients. Our team of skilled professionals ensures precision, efficiency, and compliance with international standards, making us a trusted partner in the industry.
                     </motion.p>
 
-                    <motion.button
+                    <MotionLink
+                        to="/about"
                         className="bg-blue-600 text-white px-8 py-2 rounded"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        onClick={() => navigate('/about')}
+                        onClick={() => scrollTo(0, 0)}
                     >
                         Learn More
-                    </motion.button>
+                    </MotionLink>
                 </motion.div>
             </div>
         </motion.div>

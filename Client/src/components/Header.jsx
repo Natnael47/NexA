@@ -56,9 +56,9 @@ const Header = () => {
                     initial={{ scale: 0.9, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ duration: 1, delay: 0.3 }}
-                    className="text-4xl sm:text-6xl md:text-[82px] max-w-3xl font-bold drop-shadow-[2px_2px_5px_rgba(0,0,0,0.8)]"
+                    className="text-4xl sm:text-6xl md:text-[82px] max-w-4xl font-bold drop-shadow-[2px_2px_5px_rgba(0,0,0,0.8)]"
                 >
-                    Explore homes that fit your dreams
+                    Innovating Real Estate, Elevators, and Software Solutions
                 </motion.h2>
 
                 {/* Buttons */}

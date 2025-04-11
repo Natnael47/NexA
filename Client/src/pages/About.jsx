@@ -1,81 +1,82 @@
-import { Lightbulb, ShieldCheck, Users } from 'lucide-react'
-import React from 'react'
-import { assets } from '../assets/assets'
+import { Lightbulb, ShieldCheck, Users } from 'lucide-react';
+import React from 'react';
+import { assets } from '../assets/assets';
 
 const About = () => {
     return (
-        <div className='w-4/5 mx-auto mt-28'>
-            <div className='text-center text-2xl pt-2 text-black'>
-                <h1 className='text-2xl sm:text-4xl font-bold mb-2 text-center'>About <span className='font-light underline underline-offset-4 decoration-1'>NexA</span></h1>
+        <div className="w-11/12 md:w-4/5 mx-auto mt-28">
+            {/* Title */}
+            <div className="text-center">
+                <h1 className="text-2xl sm:text-4xl font-bold mb-4">
+                    About <span className="font-light underline underline-offset-4 decoration-1">NexA</span>
+                </h1>
             </div>
-            <div className='my-10 flex flex-col md:flex-row gap-8 md:gap-12 max-w-7xl mx-auto px-4 lg:px-8'>
-                {/* Image Section */}
-                <img
-                    className='w-full md:w-1/2 lg:w-5/12 object-cover rounded-xl'
-                    src={assets.brand_img}
-                    alt="Brand"
-                />
+
+            {/* Main Content Section */}
+            <div className="my-12 flex flex-col md:flex-row gap-8 md:gap-14 items-center max-w-7xl mx-auto">
+                {/* Image Section with cool effect */}
+                <div className="relative group w-full md:w-1/2 lg:w-5/12">
+                    <img
+                        src={assets.about_img}
+                        alt="Brand"
+                        className="w-full object-cover rounded-2xl border-2 border-transparent shadow-md transition-all duration-500 group-hover:border-blue-500 group-hover:shadow-[0_0_20px_4px_rgba(59,130,246,0.6)]"
+                    />
+                    <div className="absolute inset-0 bg-white/60 rounded-2xl opacity-0 group-hover:opacity-10 transition-all duration-500" />
+                </div>
 
                 {/* Text Section */}
-                <div className='flex flex-col justify-center gap-6 text-gray-800 md:w-1/2 lg:w-7/12 text-lg'>
+                <div className="flex flex-col justify-center gap-6 text-gray-800 md:w-1/2 text-lg leading-relaxed">
                     <p>
-                        At NexA, we take pride in combining cutting-edge technology with creative engineering to enhance both functionality and aesthetics. Our commitment to precision, efficiency, and compliance with international standards makes us a trusted partner for businesses and individuals seeking reliable, high-quality engineering solutions.
+                        At <strong>NexA</strong>, we take pride in combining cutting-edge technology with creative engineering to enhance both functionality and aesthetics. Our commitment to precision, efficiency, and compliance with international standards makes us a trusted partner.
                     </p>
                     <p>
-                        At NexA, we believe in combining cutting-edge technology with creative engineering to enhance functionality and aesthetics. Whether it’s installing state-of-the-art elevators, refining interior spaces, or providing specialized engineering solutions, we are dedicated to excellence in every project.
+                        Whether it’s installing state-of-the-art elevators, refining interior spaces, or providing specialized engineering solutions, we are dedicated to excellence in every project.
                     </p>
-                    <b className='text-gray-900 text-xl'>Our Expertise</b>
+                    <b className="text-gray-900 text-xl">Our Expertise</b>
                     <p>
-                        <span className='font-semibold'>Elevators & Vertical Transportation Systems:</span>
-                        We provide advanced elevator solutions, from design and installation to maintenance and modernization, ensuring safety, efficiency, and seamless vertical mobility.
+                        <span className="font-semibold">Elevators & Vertical Transportation Systems:</span> We provide advanced elevator solutions, from design and installation to modernization, ensuring safety, efficiency, and seamless vertical mobility.
                     </p>
                 </div>
             </div>
 
+            {/* Why Choose Us Section */}
+            <div className="mb-12">
+                <h1 className="text-2xl sm:text-4xl font-bold mb-6">Why <span className="font-light underline underline-offset-4 decoration-1">Choose Us</span></h1>
 
-            <div>
-                <h1 className='text-2xl sm:text-4xl font-bold mb-2 text-start'>Why <span className='font-light underline underline-offset-4 decoration-1'>Choose Us</span></h1>
-            </div>
-            <div className="flex flex-col md:flex-row gap-6 md:gap-8 mb-20">
-                {/* Innovation & Technology */}
-                <div className="group border rounded-lg px-10 md:px-16 py-10 sm:py-16 flex flex-col gap-5 text-gray-700 bg-gray-100 shadow-md hover:bg-gradient-to-r hover:from-[#101828] hover:to-blue-900 hover:text-white hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer">
-                    <div className="flex items-center gap-3">
-                        <Lightbulb className="w-6 h-6 text-black transition-all group-hover:text-white" />
-                        <b className="text-lg">Innovation & Technology</b>
-                    </div>
-                    <p className="text-[15px] leading-relaxed">
-                        We stay ahead of industry trends, using the latest technologies to provide
-                        efficient and cutting-edge solutions that drive progress.
-                    </p>
-                </div>
-
-                {/* Skilled Professionals */}
-                <div className="group border rounded-lg px-10 md:px-16 py-10 sm:py-16 flex flex-col gap-5 text-gray-700 bg-gray-100 shadow-md hover:bg-gradient-to-r hover:from-[#101828] hover:to-blue-900 hover:text-white hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer">
-                    <div className="flex items-center gap-3">
-                        <Users className="w-6 h-6 text-black transition-all group-hover:text-white" />
-                        <b className="text-lg">Skilled Professionals</b>
-                    </div>
-                    <p className="text-[15px] leading-relaxed">
-                        Our team of engineers, designers, and consultants ensures precision, compliance,
-                        and superior execution in every project, delivering excellence at every stage.
-                    </p>
-                </div>
-
-                {/* Quality & Compliance */}
-                <div className="group border rounded-lg px-10 md:px-16 py-10 sm:py-16 flex flex-col gap-5 text-gray-700 bg-gray-100 shadow-md hover:bg-gradient-to-r hover:from-[#101828] hover:to-blue-900 hover:text-white hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer">
-                    <div className="flex items-center gap-3">
-                        <ShieldCheck className="w-6 h-6 text-black transition-all group-hover:text-white" />
-                        <b className="text-lg">Quality & Compliance</b>
-                    </div>
-                    <p className="text-[15px] leading-relaxed">
-                        We adhere to international standards and best practices, ensuring safety, durability,
-                        and high performance in all our construction and engineering services.
-                    </p>
+                <div className="flex flex-col md:flex-row gap-6">
+                    {/* Card Template */}
+                    {[
+                        {
+                            icon: <Lightbulb className="w-6 h-6 transition-all group-hover:text-white" />,
+                            title: "Innovation & Technology",
+                            desc: "We stay ahead of industry trends, using the latest technologies to provide efficient and cutting-edge solutions that drive progress.",
+                        },
+                        {
+                            icon: <Users className="w-6 h-6 transition-all group-hover:text-white" />,
+                            title: "Skilled Professionals",
+                            desc: "Our team of engineers, designers, and consultants ensures precision and superior execution in every project.",
+                        },
+                        {
+                            icon: <ShieldCheck className="w-6 h-6 transition-all group-hover:text-white" />,
+                            title: "Quality & Compliance",
+                            desc: "We adhere to international standards and best practices, ensuring safety, durability, and high performance.",
+                        },
+                    ].map((card, i) => (
+                        <div
+                            key={i}
+                            className="group border rounded-xl px-10 py-12 flex flex-col gap-5 bg-gray-100 shadow-md hover:bg-gradient-to-r hover:from-[#101828] hover:to-blue-900 hover:text-white hover:shadow-2xl hover:scale-105 transition-all duration-500 cursor-pointer"
+                        >
+                            <div className="flex items-center gap-3">
+                                {card.icon}
+                                <b className="text-lg">{card.title}</b>
+                            </div>
+                            <p className="text-sm sm:text-base">{card.desc}</p>
+                        </div>
+                    ))}
                 </div>
             </div>
-
         </div>
-    )
-}
+    );
+};
 
-export default About
+export default About;
