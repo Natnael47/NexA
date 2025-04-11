@@ -42,7 +42,7 @@ const Elevators = () => {
     };
 
     return (
-        <div className="w-full mt-5 ml-5 max-w-7xl bg-gray-100 rounded-xl p-6">
+        <div className="w-full mt-5 ml-5 max-w-7xl max-h-[90vh] bg-gray-100 rounded-xl p-6">
             <div className="flex items-center justify-between mb-6">
                 <h1 className="text-4xl font-bold text-gray-800">Elevator List</h1>
                 <button
@@ -53,7 +53,7 @@ const Elevators = () => {
                 </button>
             </div>
 
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+            <div className="bg-white rounded-lg w-full max-h-[84vh] overflow-scroll mb-2 shadow-lg">
                 <div className="grid grid-cols-[0.6fr_2fr_1fr_1.5fr] items-center gap-6 p-4 border-b bg-blue-500 text-white text-lg font-semibold">
                     <span className="text-center">Image</span>
                     <span className="text-left">Title</span>

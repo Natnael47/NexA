@@ -44,10 +44,10 @@ const Projects = () => {
     }, []);
 
     return (
-        <div className="m-5 w-full max-w-6.5xl max-h-[90vh] bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-xl p-6 shadow-lg">
+        <div className="m-5 w-full max-w-6.5xl max-h-[90vh] rounded-xl p-6">
             {/* Header */}
             <div className="flex items-center justify-between mb-6">
-                <h1 className="text-4xl font-bold text-white">Project List</h1>
+                <h1 className="text-4xl font-bold text-black">Project List</h1>
                 <div className="flex items-center space-x-4">
                     <button
                         className="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all"
