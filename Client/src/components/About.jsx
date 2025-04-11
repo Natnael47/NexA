@@ -25,7 +25,7 @@ const About = () => {
                 <motion.img
                     src={assets.brand_img}
                     alt=""
-                    className="w-full sm:w-1/2 max-w-lg"
+                    className="w-full sm:w-1/2 mb-2 max-w-lg"
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 1, delay: 0.2 }}

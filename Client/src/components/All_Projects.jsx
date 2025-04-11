@@ -2,14 +2,11 @@ import { motion } from "framer-motion";
 import React from "react";
 import { Link } from "react-router-dom";
 import { assets } from "../assets/assets";
-import constructionImg from "../assets/construction.jpg";
-import elevatorImage from "../assets/elevtor.png";
-import tunnelImage from "../assets/tunnel.png";
 
 const services = [
-    { name: "Construction", img: constructionImg, link: "/construction" },
-    { name: "Elevators", img: elevatorImage, link: "/elevators" },
-    { name: "Tunnels", img: tunnelImage, link: "/tunnels" },
+    { name: "Construction", img: assets.constructionImg, link: "/construction" },
+    { name: "Elevators", img: assets.elevatorImage, link: "/elevators" },
+    { name: "Tunnels", img: assets.tunnelImage, link: "/tunnels" },
     { name: "HVAC", img: assets.hvacImage, link: "/hvac" },
     { name: "Software", img: assets.computerImage, link: "/software" },
     { name: "Tourism", img: assets.touristImage, link: "/tourism" },

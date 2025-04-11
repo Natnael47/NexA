@@ -26,7 +26,7 @@ const Dashboard = () => {
     }, []);
 
     const iconSize = 50;
-    const iconColor = '#22C55E';
+    const iconColor = '#2A7EFC';
 
     return (
         <div className="m-5 w-full max-w-6.5xl max-h-[90vh]">

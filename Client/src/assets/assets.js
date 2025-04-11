@@ -1,23 +1,23 @@
 import about_img from "./abt2.webp";
-import touristImage from "./Airplane.png";
-import background_image_2 from "./bg2.jpg";
-import background_image_3 from "./bg3.jpg";
-import background_image_4 from "./bg4.jpg";
-import background_image_5 from "./bg5.jpg";
-import background_image_6 from "./bg6.jpg";
-import background_image_7 from "./bg7.jpg";
-import brand_img from "./brand_img.png";
+import touristImage from "./Airplane.webp";
+import background_image_2 from "./bg2-2.jpeg";
+import background_image_3 from "./bg3-transformed (1).jpeg";
+import background_image_4 from "./bg4-transformed.jpeg";
+import background_image_5 from "./bg5-transformed.jpeg";
+import background_image_6 from "./bg6-transformed.jpeg";
+import background_image_7 from "./bg7-transformed.jpeg";
+import brand_img from "./brand_img-transformed.png";
 import C_logo from "./clogo.png";
-import computerImage from "./computer.png";
+import computerImage from "./computer.webp";
 import {
   default as background_image_1,
   default as constructionImg,
-} from "./construction.jpg";
+} from "./construction-transformed.webp";
 import cross_icon from "./cross_icon.svg";
-import elevatorImage from "./elevtor.png";
+import elevatorImage from "./elevtor.webp";
 import googleMap from "./googlemap.png";
 import header_img from "./header_img.png";
-import hvacImage from "./hvac.png";
+import hvacImage from "./hvac.webp";
 import left_arrow from "./left_arrow.svg";
 import menu_icon from "./menu_icon.svg";
 import profile_img_3 from "./photo_Abdu.jpg";
@@ -35,7 +35,7 @@ import logo, {
 } from "./ps-nexa-logo-w.png";
 import right_arrow from "./right_arrow.svg";
 import star_icon from "./star_icon.svg";
-import tunnelImage from "./tunnel.png";
+import tunnelImage from "./tunnel.webp";
 
 export const assets = {
   nexa_logo,
