@@ -15,12 +15,12 @@ const Navbar = () => {
     }, [showMobileMenu]);
 
     return (
-        <div className='top-0 left-0 w-full z-50 absolute bg-transparent'>
+        <div className='absolute top-0 left-0 w-full z-50'>
             <div className='container mx-auto flex justify-between items-center py-4 px-6 md:px-20 lg:px-32'>
 
-                {/* Logo with black-ish background */}
+                {/* Logo */}
                 <div
-                    className="bg-none rounded-xl p-2 cursor-pointer"
+                    className="rounded-xl p-2 cursor-pointer"
                     onClick={() => navigate('/')}
                 >
                     <img
@@ -31,18 +31,20 @@ const Navbar = () => {
                 </div>
 
                 {/* Desktop Navigation */}
-                <ul className='hidden md:flex gap-8 px-12 py-3 bg-white/60 backdrop-blur-lg border border-gray-200 rounded-full shadow-xl items-center text-black font-medium text-base'>
-                    {["Home", "About", "Services", "Contact"].map((item) => (
-                        <li key={item}>
-                            <a
-                                href={`#${item}`}
-                                className='px-5 py-2 rounded-full transition-all duration-300 hover:bg-blue-800/80 hover:text-white hover:shadow-md'
-                            >
-                                {item}
-                            </a>
-                        </li>
-                    ))}
-                </ul>
+                <div className="hidden md:flex items-center justify-center">
+                    <ul className='flex gap-8 px-12 py-3 bg-white/80 backdrop-blur-md border border-white/40 rounded-full shadow-lg hover:bg-white text-black font-medium text-base'>
+                        {["Home", "About", "Services", "Contact"].map((item) => (
+                            <li key={item}>
+                                <a
+                                    href={`#${item}`}
+                                    className='px-5 py-2 rounded-full transition-all duration-300 hover:bg-blue-800/80 hover:text-white hover:shadow-md'
+                                >
+                                    {item}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
 
                 {/* Mobile Menu Icon */}
                 <MenuIcon
@@ -74,7 +76,6 @@ const Navbar = () => {
                         </li>
                     ))}
                 </ul>
-
             </div>
         </div>
     );
