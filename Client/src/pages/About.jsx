@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { Lightbulb, ShieldCheck, Users } from 'lucide-react';
 import React from 'react';
 import { assets } from '../assets/assets';
@@ -15,14 +16,24 @@ const About = () => {
             {/* Main Content Section */}
             <div className="my-12 flex flex-col md:flex-row gap-8 md:gap-14 items-center max-w-7xl mx-auto">
                 {/* Image Section with cool effect */}
-                <div className="relative group w-full md:w-1/2 lg:w-5/12">
-                    <img
-                        src={assets.about_img}
-                        alt="Brand"
-                        className="w-full object-cover rounded-2xl border-2 border-transparent shadow-md transition-all duration-500 group-hover:border-blue-500 group-hover:shadow-[0_0_20px_4px_rgba(59,130,246,0.6)]"
-                    />
-                    <div className="absolute inset-0 bg-white/60 rounded-2xl opacity-0 group-hover:opacity-10 transition-all duration-500" />
-                </div>
+                <motion.div
+                    className="relative w-full md:w-1/2 lg:w-5/12 group"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                >
+                    {/* Glowing Border Animation */}
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500 via-sky-500 to-blue-500 opacity-70 blur-md animate-spin-slow group-hover:opacity-100 group-hover:blur-lg z-0"></div>
+
+                    {/* Overlay to contain glow only around border */}
+                    <div className="relative z-10 p-[3px] rounded-2xl bg-gradient-to-tr from-blue-500 via-purple-500 to-blue-500 group-hover:shadow-[0_0_30px_8px_rgba(59,130,246,0.6)] transition-all duration-500">
+                        <img
+                            src={assets.about_img}
+                            alt="Brand"
+                            className="w-full object-cover rounded-2xl block"
+                        />
+                    </div>
+                </motion.div>
 
                 {/* Text Section */}
                 <div className="flex flex-col justify-center gap-6 text-gray-800 md:w-1/2 text-lg leading-relaxed">
