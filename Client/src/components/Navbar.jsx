@@ -26,7 +26,7 @@ const Navbar = () => {
                     <img
                         src={assets.C_logo}
                         alt="Logo"
-                        className='w-[110px] h-[110px] object-contain'
+                        className='w-[110px] h-[110px] object-contain hover:scale-105 transition-all duration-300'
                     />
                 </div>
 

@@ -1,12 +1,10 @@
 import { motion } from "framer-motion";
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { assets } from "../assets/assets";
-import { AppContext } from "../context/AppContext";
 
 const About = () => {
     const MotionLink = motion(Link);
-    const { navigate } = useContext(AppContext);
     return (
         <motion.div
             initial={{ opacity: 0, x: 200 }}

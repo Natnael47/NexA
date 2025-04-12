@@ -1,8 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { assets } from "../assets/assets";
-import { AppContext } from "../context/AppContext";
 import Navbar from "./Navbar";
 
 const backgroundImages = [
@@ -28,7 +27,6 @@ const imageTexts = [
 const Header = () => {
     const [index, setIndex] = useState(0);
     const [initialLoad, setInitialLoad] = useState(true);
-    const { navigate } = useContext(AppContext);
 
     useEffect(() => {
         const interval = setInterval(() => {
