@@ -34,7 +34,7 @@ const Header = () => {
         const interval = setInterval(() => {
             setIndex((prev) => (prev + 1) % backgroundImages.length);
             setInitialLoad(false);
-        }, 7000);
+        }, 5000);
         return () => clearInterval(interval);
     }, []);
 
