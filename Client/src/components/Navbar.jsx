@@ -37,7 +37,7 @@ const Navbar = () => {
                             <li key={item}>
                                 <a
                                     href={`#${item}`}
-                                    className='px-5 py-2 rounded-full transition-all duration-300 hover:bg-blue-800/80 hover:text-white hover:shadow-md'
+                                    className='px-5 py-2 rounded-full transition-all duration-300 hover:bg-black hover:text-white hover:shadow-md'
                                 >
                                     {item}
                                 </a>

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { assets } from "../assets/assets";
 
 const services = [
-    { name: "Construction", img: assets.constructionImg, link: "/construction" },
+    { name: "Construction", img: assets.background_image_4, link: "/construction" },
     { name: "Elevators", img: assets.elevatorImage, link: "/elevators" },
     { name: "Tunnels", img: assets.tunnelImage, link: "/tunnels" },
     { name: "HVAC", img: assets.hvacImage, link: "/hvac" },
