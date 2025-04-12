@@ -79,7 +79,7 @@ const Header = () => {
             </div>
 
             {/* Overlay */}
-            <div className="absolute inset-0 bg-black opacity-30 z-10 pointer-events-none" />
+            <div className="absolute inset-0 z-10 pointer-events-none" />
 
             {/* Foreground Text Content */}
             <div className="relative z-20 flex flex-col items-center justify-center min-h-screen text-center text-white px-4">

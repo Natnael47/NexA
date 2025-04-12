@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import Footer from './components/Footer';
+import LoadingScreen from './components/LoadingScreen';
 import Navbar2 from './components/Navbar2';
+
 import About from './pages/About';
 import Construction from './pages/Construction';
 import Contact from './pages/Contact';
@@ -20,6 +22,21 @@ const App = () => {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
 
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading delay (e.g., fetching assets or initializing)
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000); // Adjust this delay as needed
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return <LoadingScreen />;
+  }
+
   return (
     <>
       {!isHomePage && <Navbar2 />}
@@ -32,8 +49,6 @@ const App = () => {
           <Route path='/elevators' element={<Elevators />} />
           <Route path='/product/:productId' element={<Product />} />
           <Route path='/privacy' element={<Privacy_Policy />} />
-
-
           <Route path='/hvac' element={<HVAC />} />
           <Route path='/software' element={<Software />} />
           <Route path='/tunnels' element={<Tunnels />} />
