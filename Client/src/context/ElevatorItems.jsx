@@ -16,10 +16,10 @@ const ElevatorItems = ({ id, image, name, category, description }) => {
 
                 {/* Bottom Info Box with Glow on Hover */}
                 <div className='absolute left-0 right-0 bottom-[-5px] flex justify-center'>
-                    <div className='inline-block bg-white w-3/4 px-4 py-3 rounded-md text-center shadow-xl transition-all duration-300 ease-in-out
-                        group-hover:shadow-[0_0_15px_rgba(59,130,246,0.7)]
-                        border-2 border-gray-300 group-hover:border-blue-300
-                        '>
+
+                    <div className='inline-block bg-white w-3/4 px-4 py-2 shadow-md transition-all duration-300 ease-in-out
+                        group-hover:shadow-[0_0_15px_rgba(0,0,0,0.7)]
+                        border-2 border-gray-300 group-hover:border-gray-500'>
                         <h2 className='text-xl font-semibold text-gray-800'>{name}</h2>
                         <p>{category} <span className='px-1'>|</span> {name}</p>
                     </div>
