@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { backendUrl } from '../App';
 
-const ElevatorItems = ({ id, image, name, category, description }) => {
+const ElevatorItems = ({ id, image, name, category, description, currentPage }) => {
     return (
         <div className='relative w-full overflow-visible pb-10'>
-            <Link to={`/product/${id}`} className='block group'>
+            <Link to={`/product/${id}?page=${currentPage}`} className='block group'>
                 <div className='w-full h-[400px] overflow-hidden rounded-sm shadow-md transition-transform duration-300 ease-in-out group-hover:scale-102'>
                     <img
                         src={`${backendUrl || ""}/images/${image || "default.jpg"}`}

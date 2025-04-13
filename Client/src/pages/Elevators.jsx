@@ -1,6 +1,6 @@
 import { ArrowLeft, ChevronRight } from 'lucide-react';
 import React, { useContext, useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
 import ElevatorItems from '../context/ElevatorItems';
 
@@ -9,9 +9,13 @@ const ITEMS_PER_PAGE = 6;
 const Elevators = () => {
     const { fetchElevatorList, ElevatorList } = useContext(AppContext);
     const [selectedCategory, setSelectedCategory] = useState("All");
-    const [currentPage, setCurrentPage] = useState(1);
+    //const [currentPage, setCurrentPage] = useState(1);
     const navigate = useNavigate();
     const [isMobile, setIsMobile] = useState(false);
+
+    const [searchParams, setSearchParams] = useSearchParams();
+    const page = parseInt(searchParams.get("page")) || 1;
+    const [currentPage, setCurrentPage] = useState(page);
 
     useEffect(() => {
         fetchElevatorList();
@@ -41,8 +45,14 @@ const Elevators = () => {
     const handlePageChange = (page) => {
         if (page >= 1 && page <= totalPages) {
             setCurrentPage(page);
+            setSearchParams({ page: page.toString() }); // <-- this updates the URL!
         }
     };
+
+    useEffect(() => {
+        setCurrentPage(page);
+    }, [page]);
+
 
     return (
         <div className='container mx-auto py-4 pt-10 px-6 md:px-20 lg:px-32 my-20 w-full overflow-hidden' id='Projects'>
@@ -95,6 +105,7 @@ const Elevators = () => {
                                 name={project.title}
                                 category={project.category}
                                 description={project.description}
+                                currentPage={currentPage}
                             />
                         ))}
                     </div>

@@ -1,6 +1,6 @@
 import { ArrowLeft, ChevronRight, Mail, MapPin, Phone } from 'lucide-react';
 import React, { useContext, useEffect, useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { backendUrl } from '../App';
 import { AppContext } from '../context/AppContext';
 
@@ -11,6 +11,9 @@ const Product = () => {
     const { fetchElevatorList, ElevatorList } = useContext(AppContext);
     const navigate = useNavigate();
     const [isMobile, setIsMobile] = useState(false);
+
+    const [searchParams] = useSearchParams();
+    const page = searchParams.get("page") || 1;
 
     useEffect(() => {
         fetchElevatorList(); // Ensure list is fetched
@@ -48,7 +51,7 @@ const Product = () => {
             {/* Breadcrumb for desktop */}
             {!isMobile && (
                 <div className="flex items-center text-lg mb-4">
-                    <Link to="/elevators" className="text-blue-500 hover:text-blue-700">Elevators</Link>
+                    <Link to={`/elevators?page=${page}`} className="text-blue-500 hover:text-blue-700">Elevators</Link>
                     <span className="mx-2"><ChevronRight /></span>
                     <span className="text-gray-600">{productData.title}</span>
                 </div>
@@ -60,7 +63,7 @@ const Product = () => {
                     <ArrowLeft
                         size={24}
                         className="cursor-pointer text-blue-500"
-                        onClick={() => navigate(-1)} // Go back to the previous page
+                        onClick={() => navigate(`/elevators?page=${page}`)}
                     />
                 </div>
             )}
