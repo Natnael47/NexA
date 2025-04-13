@@ -9,9 +9,11 @@ const Add_Elevators = () => {
         title: "",
         description: "",
         category: "",
+        customCategory: "",
         images: [],
         imagePreviews: Array(4).fill(null),
     });
+
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -36,7 +38,11 @@ const Add_Elevators = () => {
         const data = new FormData();
         data.append("title", formData.title);
         data.append("description", formData.description);
-        data.append("category", formData.category);
+
+        // ✅ Use customCategory if user selected "Other"
+        const finalCategory =
+            formData.category === "__custom__" ? formData.customCategory : formData.category;
+        data.append("category", finalCategory);
 
         formData.images.forEach((image) => {
             if (image) {
@@ -48,10 +54,13 @@ const Add_Elevators = () => {
             const response = await axios.post(`${backendUrl}/api/elevator/add`, data);
             if (response.data.success) {
                 toast.success("Elevator Added successfully");
+
+                // ✅ Reset form, including both category and customCategory
                 setFormData({
                     title: "",
                     description: "",
                     category: "",
+                    customCategory: "",
                     images: [],
                     imagePreviews: Array(4).fill(null),
                 });
@@ -114,8 +123,25 @@ const Add_Elevators = () => {
                             <option value="Residential">Residential</option>
                             <option value="Commercial">Commercial</option>
                             <option value="Industrial">Industrial</option>
+                            <option value="__custom__">Other</option>
                         </select>
                     </label>
+
+                    {/* Show input if "Other" selected */}
+                    {formData.category === "__custom__" && (
+                        <label className="flex flex-col w-[620px]">
+                            <p className="mb-1 font-semibold text-gray-700">Enter Custom Category</p>
+                            <input
+                                type="text"
+                                name="customCategory"
+                                value={formData.customCategory}
+                                onChange={(e) => setFormData({ ...formData, customCategory: e.target.value })}
+                                required
+                                className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+                                placeholder="Enter custom category"
+                            />
+                        </label>
+                    )}
 
                     <label className="flex flex-col w-[620px]">
                         <p className="mb-1 font-semibold text-gray-700">Description</p>
