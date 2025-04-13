@@ -263,12 +263,28 @@ export const getAdminDashboardStats = async (req, res) => {
   try {
     const projectCount = await ProjectModel.countDocuments();
     const elevatorCount = await ElevatorModel.countDocuments();
+
     const categoryCount = await ProjectModel.distinct("category").then(
       (categories) => categories.length
     );
-    const totalImages = await ProjectModel.aggregate([
-      { $project: { imageCount: { $size: "$images" } } },
-    ]).then((results) => results.reduce((sum, doc) => sum + doc.imageCount, 0));
+
+    // Fetch all projects and count image entries
+    const allProjects = await ProjectModel.find({}, "images");
+    const projectImageCount = allProjects.reduce(
+      (sum, proj) =>
+        sum + (Array.isArray(proj.images) ? proj.images.length : 0),
+      0
+    );
+
+    // Fetch all elevators and count image entries
+    const allElevators = await ElevatorModel.find({}, "images");
+    const elevatorImageCount = allElevators.reduce(
+      (sum, elev) =>
+        sum + (Array.isArray(elev.images) ? elev.images.length : 0),
+      0
+    );
+
+    const totalImages = projectImageCount + elevatorImageCount;
 
     res.json({
       success: true,
